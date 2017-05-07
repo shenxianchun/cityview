@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cityview.po.AqidayCustom;
-import com.cityview.po.AqimonthCustom;
+import com.cityview.po.Aqiday;
+
 
 /**
 * <p>Title: AqiController.java<／p>
@@ -23,19 +23,19 @@ public class AqiController {
 		//@RequestBody将请求的商品信息的json串转成itemsCustom对象
 		//@ResponseBody将itemsCustom转成json输出
 		@RequestMapping("/requestJson")
-		public @ResponseBody AqidayCustom requestJson(@RequestBody AqidayCustom aqimonthCustom){
+		public @ResponseBody Aqiday requestJson(@RequestBody Aqiday aqimonth){
 			System.out.println("传过来了=======================");
-			System.out.println(aqimonthCustom.getCityname());
+			System.out.println(aqimonth.getCityname());
 			//@ResponseBody将itemsCustom转成json输出
-			return aqimonthCustom;
+			return aqimonth;
 		}
 		
 		//请求key/value，输出json
 		@RequestMapping("/responseJson")
-		public @ResponseBody AqidayCustom responseJson(AqidayCustom aqimonthCustom){
+		public @ResponseBody Aqiday responseJson(Aqiday aqimonth){
 			System.out.println("传过来了=======================");
-			System.out.println(aqimonthCustom.getCityname());
+			System.out.println(aqimonth.getCityname());
 			//@ResponseBody将itemsCustom转成json输出
-			return aqimonthCustom;
+			return aqimonth;
 		}
 }

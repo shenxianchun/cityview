@@ -2,7 +2,8 @@ package com.cityview.service;
 
 import java.util.List;
 
-import com.cityview.po.AqimonthCustom;
+import com.cityview.po.Aqimonth;
+
 
 /**
 * <p>Title: AqimonthService.java<／p>
@@ -14,5 +15,5 @@ import com.cityview.po.AqimonthCustom;
 */
 public interface AqimonthService {
 	//查询月全量
-	public List<AqimonthCustom> findAqimonthList(AqimonthCustom aqimonthCustom)throws Exception;
+	public List<Aqimonth> findAqimonthList(Aqimonth aqimonth)throws Exception;
 }
