@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cityview.mapper.AqimonthMapperCustom" >
+
+   <!-- 定义查询的sql片段，就是查询条件 -->
+   <sql id="query_aqi_where">
+   	<!-- 使用动态sql，通过if判断，满足条件进行sql拼接 -->
+   	<!-- 查询条件通过AqimonthQueryVo包装对象 中AqimonthCustom属性传递 -->
+   		<if test="aqimonthCustom!=null">
+   			<if test="aqimonthCustom.cityname!=null and aqimonthCustom.cityname!=''">
+   				aqimonth.cityname='${aqimonthCustom.cityname}'
+   			</if>
+   		</if>
+   </sql>
+  	
+  	<!-- aqi月全量列表查询 -->
+  	<!-- parameterType传入包装对象(包装了查询条件)
+  		resultType建议使用扩展对象
+  	 -->
+  	<select id="findAqimonthList" parameterType="com.cityview.po.AqimonthQueryVo"
+  		 resultType="com.cityview.po.AqimonthCustom">
+  		SELECT aqimonth.* FROM aqimonth
+  		<where>
+  			<include refid="query_aqi_where"></include>
+  		</where>
+  	</select>
+  	
+</mapper>
