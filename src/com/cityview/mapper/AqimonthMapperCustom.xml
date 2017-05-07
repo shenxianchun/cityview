@@ -6,23 +6,29 @@
    <sql id="query_aqi_where">
    	<!-- 使用动态sql，通过if判断，满足条件进行sql拼接 -->
    	<!-- 查询条件通过AqimonthQueryVo包装对象 中AqimonthCustom属性传递 -->
-   		<if test="aqimonthCustom!=null">
-   			<if test="aqimonthCustom.cityname!=null and aqimonthCustom.cityname!=''">
-   				aqimonth.cityname='${aqimonthCustom.cityname}'
-   			</if>
-   		</if>
+		<if test="cityname!=null and cityname!=''">
+			aqimonth.cityname='#{cityname}'
+		</if>
    </sql>
   	
   	<!-- aqi月全量列表查询 -->
   	<!-- parameterType传入包装对象(包装了查询条件)
   		resultType建议使用扩展对象
   	 -->
-  	<select id="findAqimonthList" parameterType="com.cityview.po.AqimonthQueryVo"
+  	<select id="findAqimonthList" parameterType="com.cityview.po.AqimonthCustom"
   		 resultType="com.cityview.po.AqimonthCustom">
   		SELECT aqimonth.* FROM aqimonth
   		<where>
   			<include refid="query_aqi_where"></include>
   		</where>
   	</select>
+  	<insert id="insertAqimonthList" parameterType="com.cityview.po.AqimonthCustom">
+  		INSERT INTO aqimonth(cityname,month,aqiurl,aqi,minaqi,maxaqi,grade,pm,pmo,so,co,no,o,create_time)
+		VALUES('#{aqimonthCustom.cityname}','#{aqimonthCustom.month}','#{aqimonthCustom.aqiurl}','#{aqimonthCustom.aqi}','#{aqimonthCustom.minaqi}','#{aqimonthCustom.maxaqi}','#{aqimonthCustom.grade}',
+			'#{aqimonthCustom.pm}','#{aqimonthCustom.pmo}','#{aqimonthCustom.so}','#{aqimonthCustom.co}','#{aqimonthCustom.no}','#{aqimonthCustom.o}',NOW());
+  	</insert>
+  	<update id="updateAqimonthList" parameterType="com.cityview.po.AqimonthQueryVo" >
+  		
+  	</update>
   	
 </mapper>

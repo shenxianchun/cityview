@@ -6,51 +6,10 @@
 	<link rel="stylesheet" href="css/semantic.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<style type="text/css">
-	
 	/*============修饰图标*/
 	 .ico{ width: 20px; height: 20px; display:block;   position: absolute; left: 20px; top: 10px; background-repeat: no-repeat; background-image: url(images/ico1.png); }
-
 	 /*============小箭头*/
 	 .level1 i{ width: 20px; height: 10px; background-image:url(images/arrow.png); background-repeat: no-repeat; display: block; position: absolute; right: 20px; top: 20px; }
-	
-
-
-
-	 #piechart{
-		width:800px;
-		height:300px;
-		/*background:#00b5ad;*/
-		margin:20px 0px 0px 80px;
-	}
-	 #pie{
-		width:800px;
-		height:300px;
-		/*background:#00b5ad;*/
-		margin:20px 0px 90px 80px;
-	}
-	.bottom{margin-top:335px;}
-	#bottommenu{background-color: #6d6363;}
-	.monthaqi{margin:10px;margin-bottom:30px;}
-	#container{
-		margin: 10px;
-		width:800px;
-		height:300px;
-		background-color: #444;
-	}
-	#monthcount{
-		margin: 10px;
-		width:500px;
-		height:300px;
-		background-color:#564;
-		float:left;
-	}
-	#daycount{
-		width:500px;
-		height:300px;
-		background-color:#564;
-		float:left;
-	}
-	.title{height:50px;line-height:50px;margin:0 auto;text-align:center;font-size:24px;color:#31708f;}
 	</style>
 </head>
 <body>
@@ -110,10 +69,10 @@
 		<li class="level1">
 			<a href="#none"><em class="ico ico4"></em>空气质量指数<i></i></a>
 			<ul class="level2">
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
+				<li><a href="javascript:;">表格月统计数据</a></li>
+				<li><a href="javascript:;">图表月统计数据</a></li>
+				<li><a href="javascript:;">月变化趋势</a></li>
+				<li><a href="javascript:;">等级变化趋势</a></li>
 			</ul>
 		</li>
 		<li class="level1">
@@ -152,7 +111,7 @@
 						</div>
 					</td>
 					<td width="80px">选择市区:</td>
-					<td width="100px">
+					<td width="120px">
 						<div class="ui dropdown">
 							<input type="hidden" id="province" value=""/>
 							<div class="default text">先选择市区</div>
@@ -179,10 +138,10 @@
 						</div>
 					</td>
 					<td align="left">
-						<button class="ui primary button" id="save">搜索</button>
+						<button class="ui primary button" id="search">搜索</button>
 					</td>
 					<td align="left">
-						<button class="ui primary button" id="save">网络更新</button>
+						<button class="ui primary button" id="update">网络数据更新</button>
 					</td>
 				</tr>
 			</table>
@@ -192,65 +151,121 @@
 	<div class="content">
 		<img src="images/logo.png">
 		<div class="online">
-		<!--AQI月统计start-->
-			<div class="title">北京空气质量指数月统计历史数据</div>
-			<div class="monthaqi">
-				<table width="900px" class="ui selectable celled table" style="text-align: center;">
-					<thead >
-						<tr>
-							<th width="70px" height="50px" style="background-color:#38C19B;">月份</th>
-							<th width="70px" style="background-color:#38C19B;">AQI</th>
-							<th width="70px" style="background-color:#38C19B;">范围</th>
-							<th width="70px" style="background-color:#38C19B;">质量等级</th>
-							<th width="70px" style="background-color:#38C19B;">PM2.5</th>
-							<th width="70px" style="background-color:#38C19B;">PM10</th>
-							<th width="70px" style="background-color:#38C19B;">SO2</th>
-							<th width="70px" style="background-color:#38C19B;">CO</th>
-							<th width="70px" style="background-color:#38C19B;">NO2</th>
-							<th width="70px" style="background-color:#38C19B;">O3</th>
-						</tr>
-					</thead>
-					<tbody id="aqimonth-table">
-						<!-- 空气质量指数月全量指数统计列表 -->
-					</tbody>
-				</table>
+			<!--AQI月统计start-->
+			<div>
+				<div class="title"><span class="cityname"></span>空气质量指数月统计历史数据</div>
+				<div class="monthaqi">
+					<table width="900px" class="ui selectable celled table" style="text-align: center;">
+						<thead >
+							<tr>
+								<th width="70px" height="50px" style="background-color:#38C19B;">月份</th>
+								<th width="70px" style="background-color:#38C19B;">AQI</th>
+								<th width="70px" style="background-color:#38C19B;">范围</th>
+								<th width="70px" style="background-color:#38C19B;">质量等级</th>
+								<th width="70px" style="background-color:#38C19B;">PM2.5</th>
+								<th width="70px" style="background-color:#38C19B;">PM10</th>
+								<th width="70px" style="background-color:#38C19B;">SO2</th>
+								<th width="70px" style="background-color:#38C19B;">CO</th>
+								<th width="70px" style="background-color:#38C19B;">NO2</th>
+								<th width="70px" style="background-color:#38C19B;">O3</th>
+							</tr>
+						</thead>
+						<tbody id="aqimonth-table">
+							<!-- 空气质量指数月全量指数统计列表 -->
+						</tbody>
+					</table>
+				</div>
 			</div>
+			<!--AQI月统计start-->
+			
 			<!--AQT月变化趋势start-->
-			 <div id="container"></div>
+			 <div id="monthchart">
+			 	<div class="title2"><span class="cityname"></span>空气质量指数（AQI）月变化趋势</div>
+			 	<div id="container"></div>
+			 </div>
 			<!--AQT月变化趋势end-->
-		<!--AQI月统计start-->
-		<!--AQI月统计数据start-->
-			 <div id="monthcount"></div> 
-		<!--AQI月统计数据end-->
-		<!--AQI日统计数据start-->
-			 <div id="daycount"></div> 
-		<!--AQI日统计数据end-->
-
+				
+			<div class="count">
+				<div class="title3"><span class="cityname"></span>空气质量指数（AQI）等级月变化趋势</div>
+				<div id="aqimonthcount"></div>
+			</div>
+			<!-- 饼图统计start -->
+			<div class="countday">
+				<div class="title4"><span class="cityname"></span>月统计数据</div>
+				<!--AQI月统计数据start-->
+				<div id="monthcount"></div> 
+				<!--AQI月统计数据end-->
+				
+				<!--AQI日统计数据start-->
+				<div id="daycount"></div> 
+				<!--AQI日统计数据end-->
+			</div>
+			<!-- 饼图统计end -->
 		</div>
 	</div>
 <!--内容栏end-->
 <!--底边start-->
-<!-- <div class="bottom">
-	<div id="bottommenu" class="ui inverted  menu">
-		
-	</div>
-</div> -->
+<div class="bottom">
+      <ul class="bottom-left">
+        <li>
+          <ul>
+            <li class="titles">可视化平台</li>
+            <li><a href="#">联系我们</a></li>
+            <li><a href="#">加入我们</a></li>
+            <li><a href="#">友情链接</a></li>
+          </ul>
+        </li>
+        <li>
+          <ul>
+            <li class="titles">帮助中心</li>
+            <li><a href="#">意见反馈</a></li>
+            <li><a href="#">投诉中心</a></li>
+            <li><a href="#">服务说明</a></li>
+          </ul>
+        </li>
+        <li>
+          <ul>
+            <li class="titles">平台特色</li>
+            <li><a href="#">统计图表</a></li>
+            <li><a href="#">数据展示</a></li>
+            <li><a href="#">数据处理</a></li>
+          </ul>
+        </li>
+        <li>
+          <ul>
+            <li class="titles">关注我们</li>
+            <li><a href="#">官方微信</a></li>
+            <li><a href="#">新浪微博</a></li>
+            <li><a href="#">腾讯微博</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="bottom-right">
+        <li class="phone"></li>
+        <li class="code">4008-310-100</li>
+        <li>周一至周日 9:00-23:00</li>
+        <li>（仅收市话费）</li>
+      </ul>
+      <p>Copyright ©2017-2018 宜居城市可视化平台版权所有 - <a href="http://www.miitbeian.gov.cn/" target="blank_">辽ICP备16019394号</a></p>
+    </div><!-- 底部结束 -->
 <!--底边start-->
 
 <script type="text/javascript" src="js/echarts-all.js"></script>
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/semantic.min.js"></script>
 <script type="text/javascript" src="js/city.js"></script>
-
 <script type="text/javascript" src="js/aqimonth-table.js"></script>
+<!-- <script type="text/javascript" src="js/searchaqi.js"></script> -->
+
 <!-- 以下引入统计图 -->
-<script type="text/javascript" src="js/container.js"></script>
+<!-- <script type="text/javascript" src="js/container.js"></script> -->
 <script type="text/javascript" src="js/aqimonth.js"></script>
-<script type="text/javascript" src="js/daycount.js"></script>
+<script type="text/javascript" src="js/daycount.js"></script> 
 <script src="js/easing.js"></script>
 
 <script type="text/javascript">
 $(function(){
+	$(".ui.dropdown").dropdown();//下拉框生效
 	$(".treebox .level1>a").click(function(){
 		$(this).addClass('current')   //给当前元素添加"current"样式
 		.find('i').addClass('down')   //小箭头向下样式
@@ -260,9 +275,6 @@ $(function(){
 		 return false; //阻止默认时间
 	});
 })
-$(document).ready(function(){
-	$(".ui.dropdown").dropdown();
-});
 </script>
 </body>
 </html>

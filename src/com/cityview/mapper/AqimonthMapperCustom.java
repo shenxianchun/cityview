@@ -3,7 +3,6 @@ package com.cityview.mapper;
 import java.util.List;
 
 import com.cityview.po.AqimonthCustom;
-import com.cityview.po.AqimonthQueryVo;
 
 /**
 * <p>Title: AqimonthMapperCustom.java<／p>
@@ -15,6 +14,6 @@ import com.cityview.po.AqimonthQueryVo;
 */
 public interface AqimonthMapperCustom {
 	//查询月全量
-	public List<AqimonthCustom> findAqimonthList(AqimonthQueryVo aqimonthQueryVo)throws Exception;
+	public List<AqimonthCustom> findAqimonthList(AqimonthCustom aqimonthCustom)throws Exception;
 
 }

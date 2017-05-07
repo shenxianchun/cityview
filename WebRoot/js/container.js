@@ -1,20 +1,16 @@
 option = {
-    title : {
-        text: '未来一周气温变化',
-        subtext: '纯属虚构'
-    },
     tooltip : {
         trigger: 'axis'
     },
     legend: {
-        data:['最高气温','最低气温']
+        data:['最大值','平均值','最小值']
     },
     toolbox: {
         show : true,
         feature : {
             mark : {show: true},
             dataView : {show: true, readOnly: false},
-            magicType : {show: true, type: ['line', 'bar']},
+            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
             restore : {show: true},
             saveAsImage : {show: true}
         }
@@ -29,46 +25,32 @@ option = {
     ],
     yAxis : [
         {
-            type : 'value',
-            axisLabel : {
-                formatter: '{value} °C'
-            }
+            type : 'value'
         }
     ],
     series : [
         {
-            name:'最高气温',
+            name:'最大值',
             type:'line',
-            data:[11, 11, 15, 13, 12, 13, 10],
-            markPoint : {
-                data : [
-                    {type : 'max', name: '最大值'},
-                    {type : 'min', name: '最小值'}
-                ]
-            },
-            markLine : {
-                data : [
-                    {type : 'average', name: '平均值'}
-                ]
-            }
+            stack: '总量',
+            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+            data:[120, 132, 101, 134, 90, 230, 210]
         },
         {
-            name:'最低气温',
+            name:'平均值',
             type:'line',
-            data:[1, -2, 2, 5, 3, 2, 0],
-            markPoint : {
-                data : [
-                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
-                ]
-            },
-            markLine : {
-                data : [
-                    {type : 'average', name : '平均值'}
-                ]
-            }
+            stack: '总量',
+            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+            name:'最小值',
+            type:'line',
+            stack: '总量',
+            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+            data:[150, 232, 201, 154, 190, 330, 410]
         }
     ]
-};
-                    
-var mychart=echarts.init(document.getElementById("container"),"macarons");
-mychart.setOption(option);                   
+};             
+var mychart=echarts.init(document.getElementById("container"),"helianthus");
+mychart.setOption(option);

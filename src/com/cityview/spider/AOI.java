@@ -20,20 +20,25 @@ public class AOI {
 	
 	public static void main(String[] args) {
 		String url="https://www.aqistudy.cn/historydata/monthdata.php?city=北京";
-		String u="https://www.aqistudy.cn/historydata/daydata.php?city=北京&month=201312";
+		//String u="https://www.aqistudy.cn/historydata/daydata.php?city=北京&month=201312";
 		try {
-			Document doc=Jsoup.parse(new URL(u), 2000);
+			Document doc=Jsoup.parse(new URL(url), 2000);
 			Elements el=doc.select("tbody").get(0).select("tr");
 			for(int i=1;i<el.size();i++){
 				Elements tds=el.get(i).select("td");
 				for(int j=0;j<tds.size();j++){
 					Element td=tds.get(j);
 					if(j==0){
-						System.out.print("月份："+td.text()+"\t");
+						System.out.print("月份："+td.text()+"\t"+td.select("a").attr("abs:href")+"\t");
 					}else if(j==1){
 						System.out.print("AQI："+td.text()+"\t");
 					}else if(j==2){
-						System.out.print("范围："+td.text()+"\t");
+						//System.out.print("范围："+td.text()+"\t");
+						String rangeaqi=td.text();
+						int index=rangeaqi.indexOf("~");
+						String min=rangeaqi.substring(0, index);
+						String max=rangeaqi.substring(index+1, rangeaqi.length());
+						System.out.print("最小值："+min+"最大值："+max+"\t");
 					}else if(j==3){
 						System.out.print("质量等级："+td.text()+"\t");
 					}else if(j==4){

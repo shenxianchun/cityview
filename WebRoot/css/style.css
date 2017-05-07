@@ -18,10 +18,6 @@ a:hover {color:#bd0a01;text-decoration:underline;}
 .menu li.level1 a:hover{ text-decoration: none;background-color:#326ea5;   }
 .menu li.level1 a.current{ background: #0f4679; }
 
-
-
-
-
 .ico1{ background-position: 0 0; }
 .ico2{ background-position: 0 -20px; }
 .ico3{ background-position: 0 -40px; }
@@ -37,3 +33,140 @@ a:hover {color:#bd0a01;text-decoration:underline;}
 .search{width:80%;height:60px;position:absolute;left:226px;top:192px;}
 .content{width:85%;height:99%;position:absolute;top: 245px;left:200px;}
 .content .online{width:1038px;margin-top: -100px;margin-left: 45px;border:1px solid #000 ;}
+/* 图表start */
+	.title{height:50px;line-height:50px;margin:0 auto;text-align:center;font-size:24px;color:#31708f;}
+	.monthaqi{margin:10px;margin-bottom:30px;}
+	#monthchart{
+		margin:0 auto;
+		/* background-color: olive; */
+	}
+	#monthchart .title2{
+		margin-left:320px;
+		margin-top:10px;
+		font-size:20px;
+		color:#274b6d;
+	}
+	#monthchart #container{
+		margin:0 auto;
+		margin-top:10px;
+		width:800px;
+		height:300px;
+		background-color: #444;
+	}
+	.count{
+		margin:0 auto;
+		/* background:#61DECD; */
+		width:100%;
+		height:300px;
+	}
+	.count .title3{
+		margin-left:320px;
+		margin-top:10px;
+		font-size:20px;
+		color:#274b6d;
+	}
+	.count #aqimonthcount{
+		margin:0 auto;
+		margin-top:10px;
+		width:800px;
+		height:300px;
+		/* background-color: #444; */
+	}
+	.countday{
+		margin:0 auto;
+		/* background:#61DECD; */
+		width:100%;
+		height:330px;
+	}
+	.countday .title4{
+		margin-left:530px;
+		margin-top:10px;
+		font-size:20px;
+		color:#274b6d;
+	}
+	.countday #monthcount{
+		width:518px;
+		height:300px;
+		background:#fff;
+		float:left;
+	}
+	.countday #daycount{
+		width:518px;
+		height:300px;
+		background:#000;
+		float:left;
+	}
+/* 图表end */ 
+
+/*底部start*/
+div.bottom{
+	width:100%;
+	background-color:#2D363B;
+	margin-top:1220px;
+}
+div.bottom>ul{
+	display: inline-block;
+}
+div.bottom ul li{
+	list-style: none;
+}
+div.bottom ul.bottom-left>li{
+	width:160px;
+	display: inline-block;
+}
+div.bottom ul.bottom-left li{
+	font-size:14px;
+	font-family:"微软雅黑";
+	margin-left: 50px;
+	margin-top:15px;
+}
+div.bottom ul.bottom-left>li  ul  li a{
+	color:gray;
+	text-decoration: none;
+}
+div.bottom ul.bottom-left>li  ul  li a:hover{
+    color:#00BEB7;
+}
+div.bottom ul.bottom-left li.titles{
+    color:white;
+    font-size:25px;
+    width:160px;
+    padding-bottom:20px;
+}
+div.bottom ul.bottom-right{
+	width:300px;
+	height:200px;
+	margin-left:90px;
+	margin-top: 50px;
+}
+div.bottom ul.bottom-right li.phone{
+	width:50px;
+	height:50px;
+	border-radius:50px;
+	border:5px solid #fff;
+	background: url("../images/28.png") no-repeat;
+	background-size:30px 30px;
+	background-position:center;
+	margin-left:120px;
+	margin-top: 10px;
+}
+div.bottom ul.bottom-right li{
+	font-size:14px;
+	font-family:"微软雅黑";
+	color:gray;
+	text-align: center;
+	margin-top:10px;
+}
+div.bottom ul.bottom-right li.code{
+	font-size: 25px;
+	color:#fff;
+}
+div.bottom  p{
+	font-size:12px;
+	font-family: "微软雅黑";
+	color:gray;
+	text-align: center;
+	margin-top: 30px;
+	padding-bottom: 20px;
+}
+/*底部end*/
