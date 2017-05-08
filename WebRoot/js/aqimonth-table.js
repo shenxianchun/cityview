@@ -1,10 +1,14 @@
 $(function(){
+	
+	
+	
+	
 	$.ajax({
 		type:'post',
 		url:'aqimonth/table.action',
 		contentType:'application/json;charset=utf-8',
 		//数据格式是json串
-		data:'{"cityname":"重庆"}',
+		data:'{"cityname":"北京"}',
 		success:function(response){//返回json结果
 			var month=[];
 			var datamin=[];

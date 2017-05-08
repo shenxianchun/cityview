@@ -181,23 +181,23 @@
 			<!--AQT月变化趋势start-->
 			 <div id="monthchart">
 			 	<div class="title2"><span class="cityname"></span>空气质量指数（AQI）月变化趋势</div>
-			 	<div id="container"></div>
+			 	<div id="container" class="chr"></div>
 			 </div>
 			<!--AQT月变化趋势end-->
 				
 			<div class="count">
 				<div class="title3"><span class="cityname"></span>空气质量指数（AQI）等级月变化趋势</div>
-				<div id="aqimonthcount"></div>
+				<div id="aqimonthcount" class="chr"></div>
 			</div>
 			<!-- 饼图统计start -->
 			<div class="countday">
 				<div class="title4"><span class="cityname"></span>月统计数据</div>
 				<!--AQI月统计数据start-->
-				<div id="monthcount"></div> 
+				<div id="monthcount" class="chr"></div> 
 				<!--AQI月统计数据end-->
 				
 				<!--AQI日统计数据start-->
-				<div id="daycount"></div> 
+				<div id="daycount" class="chr"></div> 
 				<!--AQI日统计数据end-->
 			</div>
 			<!-- 饼图统计end -->
@@ -255,14 +255,13 @@
 <script type="text/javascript" src="js/semantic.min.js"></script>
 <script type="text/javascript" src="js/city.js"></script>
 <script type="text/javascript" src="js/aqimonth-table.js"></script>
-<!-- <script type="text/javascript" src="js/searchaqi.js"></script> -->
+<script type="text/javascript" src="js/searchaqi.js"></script>
 
 <!-- 以下引入统计图 -->
 <!-- <script type="text/javascript" src="js/container.js"></script> -->
 <script type="text/javascript" src="js/aqimonth.js"></script>
 <script type="text/javascript" src="js/daycount.js"></script> 
 <script src="js/easing.js"></script>
-
 <script type="text/javascript">
 $(function(){
 	$(".ui.dropdown").dropdown();//下拉框生效
@@ -274,7 +273,21 @@ $(function(){
 		.find('i').removeClass('down').parent().next().slideUp('slow','easeOutQuad');//隐藏
 		 return false; //阻止默认时间
 	});
+	/* alert(window.location.host); */
+	/* $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
+		   $(".country").html(remote_ip_info.country);
+		   $(".province").html(remote_ip_info.province);
+		   $(".city").html(remote_ip_info.city);
+		   $(".isp").html(remote_ip_info.isp);
+		   });
+		 
+		//通过调用QQIP地址库接口查询本机当前的IP地址
+		$.getScript('http://fw.qq.com/ipaddress',function(){
+		   alert(IPData[0]); 
+		  }); */
 })
 </script>
+
+
 </body>
 </html>

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,15 +30,15 @@ public class AqimonthController {
 		//@RequestMapping实现 对queryItems方法和url进行映射，一个方法对应一个url
 		//一般建议将url和方法写成一样.action可加可不加
 		@RequestMapping("/table")
-		public @ResponseBody List<Aqimonth> queryAqimonth(Aqimonth aqimonth) throws Exception{
+		public @ResponseBody List<Aqimonth> queryAqimonth(@RequestBody Aqimonth aqimonth) throws Exception{
 			System.out.println("------空气质量指数查询start-----"+aqimonth.getCityname());
-			List<Aqimonth> aqimonthCustomlist=aqimonthService.findAqimonthList(aqimonth);
-			if(aqimonthCustomlist.size()==0){
-				aqimonthCustomlist.add(null);
-			}
+			List<Aqimonth> aqimonthlist=aqimonthService.findAqimonthList(aqimonth);
+//			if(aqimonthlist.size()==0){
+//				aqimonthlist.add(null);
+//			}
 			System.out.println("------空气质量指数查询查询end-----");
 			//@ResponseBody将itemsCustom转成json输出
-			return aqimonthCustomlist;
+			return aqimonthlist;
 		}
 	
 }

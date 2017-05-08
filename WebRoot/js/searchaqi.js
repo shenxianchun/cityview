@@ -7,6 +7,7 @@ $(function(){
 		 }
 		 $("#aqimonth-table").empty();
 		 $("#container").empty();
+		 $(".chr").removeAttr("_echarts_instance_");$(".chr").removeAttr("style");
 		 $("#aqimonthcount").empty();
 		 $("#monthcount").empty();
 		 $("#daycount").empty();

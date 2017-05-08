@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cityview.mapper.AqimonthMapperCustom" >
+<mapper namespace="com.cityview.mapper.AqimonthMapper">
 
    <!-- 定义查询的sql片段，就是查询条件 -->
    <sql id="query_aqi_where">
@@ -14,19 +14,19 @@
   	<!-- parameterType传入包装对象(包装了查询条件)
   		resultType建议使用扩展对象
   	 -->
-  	<select id="findAqimonthList" parameterType="com.cityview.po.AqimonthCustom"
-  		 resultType="com.cityview.po.AqimonthCustom">
+  	<select id="findAqimonthList" parameterType="com.cityview.po.Aqimonth"
+  		 resultType="com.cityview.po.Aqimonth">
   		SELECT aqimonth.* FROM aqimonth
   		<where>
   			<include refid="query_aqi_where"></include>
   		</where>
   	</select>
-  	<insert id="insertAqimonthList" parameterType="com.cityview.po.AqimonthCustom">
+  	<insert id="insertAqimonthList" parameterType="com.cityview.po.Aqimonth">
   		INSERT INTO aqimonth(cityname,month,aqiurl,aqi,minaqi,maxaqi,grade,pm,pmo,so,co,no,o,create_time)
 		VALUES('#{aqimonthCustom.cityname}','#{aqimonthCustom.month}','#{aqimonthCustom.aqiurl}','#{aqimonthCustom.aqi}','#{aqimonthCustom.minaqi}','#{aqimonthCustom.maxaqi}','#{aqimonthCustom.grade}',
 			'#{aqimonthCustom.pm}','#{aqimonthCustom.pmo}','#{aqimonthCustom.so}','#{aqimonthCustom.co}','#{aqimonthCustom.no}','#{aqimonthCustom.o}',NOW());
   	</insert>
-  	<update id="updateAqimonthList" parameterType="com.cityview.po.AqimonthCustom" >
+  	<update id="updateAqimonthList" parameterType="com.cityview.po.Aqimonth" >
   		
   	</update>
   	
