@@ -1,11 +1,18 @@
 package com.cityview.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cityview.po.Aqiday;
+import com.cityview.tool.GetIp;
+
+import cn.com.webxml.IpTest;
 
 
 /**
@@ -37,5 +44,15 @@ public class AqiController {
 			System.out.println(aqimonth.getCityname());
 			//@ResponseBody将itemsCustom转成json输出
 			return aqimonth;
+		}
+		@RequestMapping("/responseip")
+		public @ResponseBody String responseip(HttpServletRequest request){
+			String ip=new GetIp().getIpAddr(request);
+			System.out.println("访问者的ip地址为"+ip);
+			List<String> iplist=IpTest.iptest(ip);
+			for(String s:iplist){
+				System.out.println(s.toString());
+			}
+			return ip;
 		}
 }

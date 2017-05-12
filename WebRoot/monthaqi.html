@@ -99,6 +99,7 @@
 <div class="search">
 			<table class="ui table">
 				<tr align="center">
+					<td width="250px" style="color:red;text-align:left;">当前的位置>>空气质量指数查看</td>
 					<td width="90px">选择城市:</td>
 					<td width="100px">
 						  <div class="ui dropdown">
@@ -121,27 +122,8 @@
 							</div>
 						</div>
 					</td>
-					<td width="150px">选择查看的信息：</td>
-					<td width="150px">
-						<div class="ui dropdown">
-							<input type="hidden" id="information" value=""/>
-							<div class="default text">选择查看的信息</div>
-							<i class="dropdown icon"></i><!-- 向下的箭头 -->
-							<div class="menu">
-								<div class="item" data-value="招聘信息">招聘信息</div>
-								<div class="item" data-value="房租信息">房租信息</div>
-								<div class="item" data-value="城市气候">城市气候</div>
-								<div class="item" data-value="AQI">AQI</div>
-								<div class="item" data-value="旅游景点">旅游景点</div>
-								<div class="item" data-value="美食">美食</div>
-							</div>
-						</div>
-					</td>
-					<td align="left">
+					<td align="right">
 						<button class="ui primary button" id="search">搜索</button>
-					</td>
-					<td align="left">
-						<button class="ui primary button" id="update">网络数据更新</button>
 					</td>
 				</tr>
 			</table>
@@ -191,7 +173,6 @@
 			</div>
 			<!-- 饼图统计start -->
 			<div class="countday">
-				<div class="title4"><span class="cityname"></span>月统计数据</div>
 				<!--AQI月统计数据start-->
 				<div id="monthcount" class="chr"></div> 
 				<!--AQI月统计数据end-->
@@ -205,7 +186,7 @@
 	</div>
 <!--内容栏end-->
 <!--底边start-->
-<div class="bottom">
+<!-- <div class="bottom">
       <ul class="bottom-left">
         <li>
           <ul>
@@ -247,7 +228,7 @@
         <li>（仅收市话费）</li>
       </ul>
       <p>Copyright ©2017-2018 宜居城市可视化平台版权所有 - <a href="http://www.miitbeian.gov.cn/" target="blank_">辽ICP备16019394号</a></p>
-    </div><!-- 底部结束 -->
+    </div> --><!-- 底部结束 -->
 <!--底边start-->
 
 <script type="text/javascript" src="js/echarts-all.js"></script>
@@ -273,18 +254,6 @@ $(function(){
 		.find('i').removeClass('down').parent().next().slideUp('slow','easeOutQuad');//隐藏
 		 return false; //阻止默认时间
 	});
-	/* alert(window.location.host); */
-	/* $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
-		   $(".country").html(remote_ip_info.country);
-		   $(".province").html(remote_ip_info.province);
-		   $(".city").html(remote_ip_info.city);
-		   $(".isp").html(remote_ip_info.isp);
-		   });
-		 
-		//通过调用QQIP地址库接口查询本机当前的IP地址
-		$.getScript('http://fw.qq.com/ipaddress',function(){
-		   alert(IPData[0]); 
-		  }); */
 })
 </script>
 

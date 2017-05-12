@@ -2,22 +2,14 @@ package com.cityview.po;
 
 import java.util.Date;
 
-/**
-* <p>Title: Aqiday.java<／p>
-* <p>Description:空气质量指数每月日全量 <／p>
-* <p>Copyright:版权 2017<／p>
-* @author 沈先春
-* @date 2017年4月26日
-* @version 1.0cityview
-*/
 public class Aqiday {
     private Integer id;
 
     private String cityname;
 
-    private String aiq;
+    private String day;
 
-    private String average;
+    private String aqi;
 
     private String minaqi;
 
@@ -55,20 +47,20 @@ public class Aqiday {
         this.cityname = cityname == null ? null : cityname.trim();
     }
 
-    public String getAiq() {
-        return aiq;
+    public String getDay() {
+        return day;
     }
 
-    public void setAiq(String aiq) {
-        this.aiq = aiq == null ? null : aiq.trim();
+    public void setDay(String day) {
+        this.day = day == null ? null : day.trim();
     }
 
-    public String getAverage() {
-        return average;
+    public String getAqi() {
+        return aqi;
     }
 
-    public void setAverage(String average) {
-        this.average = average == null ? null : average.trim();
+    public void setAqi(String aqi) {
+        this.aqi = aqi == null ? null : aqi.trim();
     }
 
     public String getMinaqi() {

@@ -51,7 +51,7 @@ a:hover {color:#bd0a01;text-decoration:underline;}
 		margin-top:10px;
 		width:800px;
 		height:300px;
-		background-color: #444;
+		/* background-color: #444; */
 	}
 	.count{
 		margin:0 auto;
@@ -87,13 +87,13 @@ a:hover {color:#bd0a01;text-decoration:underline;}
 	.countday #monthcount{
 		width:518px;
 		height:300px;
-		background:#fff;
+		/* background:#fff; */
 		float:left;
 	}
 	.countday #daycount{
 		width:518px;
 		height:300px;
-		background:#000;
+		/* background:#000; */
 		float:left;
 	}
 /* 图表end */ 

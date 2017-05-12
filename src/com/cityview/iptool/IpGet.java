@@ -14,7 +14,7 @@ public class IpGet {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String ipurl="http://www.xicidaili.com/";
-		int a=0;	
+		int a=0;
 		for(int j=1;j<=10;j++){
 			String url="http://www.xicidaili.com/nn/"+j;
 			try {

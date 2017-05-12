@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cityview.mapper.AqimonthMapper">
-
+	
    <!-- 定义查询的sql片段，就是查询条件 -->
    <sql id="query_aqi_where">
    	<!-- 使用动态sql，通过if判断，满足条件进行sql拼接 -->
@@ -21,13 +21,80 @@
   			<include refid="query_aqi_where"></include>
   		</where>
   	</select>
+  	
+  	<!-- 查询链接的总数用以判断该链接是否存在start -->
+  	<select id="findAqi" parameterType="java.lang.String" resultType="java.lang.Integer">
+  		SELECT COUNT(*) FROM aqimonth WHERE aqiurl='${value}'
+  	</select>
+  	<!-- 查询链接的总数用以判断该链接是否存在end -->
+  	
+  	<!-- 批量插入空气质量指数月全量start -->
   	<insert id="insertAqimonthList" parameterType="com.cityview.po.Aqimonth">
+  		<selectKey resultType ="java.lang.Integer" keyProperty= "id" order= "AFTER">
+			SELECT LAST_INSERT_ID()
+        </selectKey >
   		INSERT INTO aqimonth(cityname,month,aqiurl,aqi,minaqi,maxaqi,grade,pm,pmo,so,co,no,o,create_time)
-		VALUES('#{aqimonthCustom.cityname}','#{aqimonthCustom.month}','#{aqimonthCustom.aqiurl}','#{aqimonthCustom.aqi}','#{aqimonthCustom.minaqi}','#{aqimonthCustom.maxaqi}','#{aqimonthCustom.grade}',
-			'#{aqimonthCustom.pm}','#{aqimonthCustom.pmo}','#{aqimonthCustom.so}','#{aqimonthCustom.co}','#{aqimonthCustom.no}','#{aqimonthCustom.o}',NOW());
+  		VALUES
+  		<foreach collection="list" item="aqiList" index="index" separator=",">
+  			(#{aqiList.cityname},#{aqiList.month},#{aqiList.aqiurl},#{aqiList.aqi},#{aqiList.minaqi},
+  			#{aqiList.maxaqi},#{aqiList.grade},#{aqiList.pm},#{aqiList.pmo},
+  			#{aqiList.so},#{aqiList.co},#{aqiList.no},#{aqiList.o},NOW())
+  		</foreach>
   	</insert>
-  	<update id="updateAqimonthList" parameterType="com.cityview.po.Aqimonth" >
-  		
-  	</update>
+  	<!-- 批量插入空气质量指数月全量end -->
+  	
+  	
+  	<!-- 批量插入空气质量指数日全量start -->
+  	<insert id="insertAqidayList" parameterType="com.cityview.po.Aqiday">
+  		<selectKey resultType ="java.lang.Integer" keyProperty= "id" order= "AFTER">
+			SELECT LAST_INSERT_ID()
+        </selectKey >
+  		INSERT INTO aqiday(cityname,day,aqi,minaqi,maxaqi,grade,pm,pmo,so,co,no,o,create_time)
+  		VALUES
+  		<foreach collection="list" item="aqidaylist" index="index" separator=",">
+  			(#{aqidaylist.cityname},#{aqidaylist.day},#{aqidaylist.aqi},#{aqidaylist.minaqi},
+  			#{aqidaylist.maxaqi},#{aqidaylist.grade},#{aqidaylist.pm},#{aqidaylist.pmo},#{aqidaylist.so},
+  			#{aqidaylist.co},#{aqidaylist.no},#{aqidaylist.o},NOW())
+  		</foreach>
+  	</insert>
+  	<!-- 批量插入空气质量指数日全量end -->
+  	
+  	<!-- 根据传入的城市统计每个月质量等级的天数start -->
+  	<select id="findAqiMonthCountGrade" parameterType="com.cityview.po.AqimonthCustom" resultMap="AqiMonthCountGradeMap">
+		SELECT count(grade)AS numGrade,grade,(SELECT substring(`day`,1,7))AS monthday 
+		FROM aqiday 
+		WHERE cityname=#{cityname} GROUP BY monthday,grade ORDER BY monthday ASC
+  	</select>
+  	<resultMap type="com.cityview.po.AqimonthQueryVo" id="AqiMonthCountGradeMap">
+  		<result column="monthday" property="monthday"/>
+  		<collection property="aqimonthCustoms" ofType="com.cityview.po.AqimonthCustom">
+  			<result column="numGrade" property="numGrade"/>
+  			<result column="grade" property="grade"/>
+  		</collection>
+  	</resultMap>
+  	
+  	
+  	<!-- 根据传入的城市统计每个月质量等级的天数end -->
+  	
+  	<!-- 空气质量指数日全量列表start -->
+  	<select id="findaqidayList" parameterType="com.cityview.po.Aqiday" resultType="com.cityview.po.Aqiday">
+  		SELECT aqiday.* 
+  		FROM aqiday 
+  		WHERE cityname=#{cityname} AND `day` LIKE '${day}%'
+  	</select>
+  	<!-- 空气质量指数日全量列表end -->
+  	
+  	<!-- 根据传入的城市和月份统计每月质量等级的天数start -->
+  	<select id="findCountGrade" parameterType="com.cityview.po.Aqiday" resultType="com.cityview.po.AqidayCustom">
+  		SELECT count(grade) numGrade,grade 
+  		FROM aqiday 
+  		WHERE cityname=#{cityname} AND `day` LIKE '${day}%' GROUP BY grade
+  	</select>
+  	<!-- 根据传入的城市和月份统计每月质量等级的天数end -->
+  	
+  	
+  	
+  	
+  	
   	
 </mapper>
