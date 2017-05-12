@@ -60,11 +60,24 @@ public interface AqimonthService {
 	public List<AqidayCustom> findCountGrade(Aqiday aqiday)throws Exception;
 	
 	/**
-	 * 根据传入的城市统计每个月质量等级的天数
+	 * 根据传入的城市统计每个月不同质量等级的天数
 	 * @return
 	 * @throws Exception
 	 */
 	public List<AqimonthQueryVo> findAqiMonthCountGrade(AqimonthCustom aqimonthCustom)throws Exception;
 	
+	/**
+	 * 统计历史以来不同质量等级的天数start
+	 * @param aqiday
+	 * @return
+	 * @throws Exception
+	 */
+	public List<AqidayCustom> findCountGradeDay(Aqiday aqiday)throws Exception;
 	
+	/**查询质量等级不同的月数
+	 * @param aqimonth
+	 * @return
+	 * @throws Exception
+	 */
+	public List<AqimonthCustom>findCountGradeMonth(Aqimonth aqimonth)throws Exception;
 }

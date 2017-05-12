@@ -65,4 +65,21 @@ public interface AqimonthMapper {
 	 * @throws Exception
 	 */
 	public List<AqimonthQueryVo> findAqiMonthCountGrade(AqimonthCustom aqimonthCustom)throws Exception;
+	
+	
+	/**
+	 * 统计历史以来不同空气质量的天数start
+	 * @param aqiday
+	 * @return
+	 * @throws Exception
+	 */
+	public List<AqidayCustom> findCountGradeDay(Aqiday aqiday)throws Exception;
+	
+	/**查询质量等级不同的月数
+	 * @param aqimonth
+	 * @return
+	 * @throws Exception
+	 */
+	public List<AqimonthCustom>findCountGradeMonth(Aqimonth aqimonth)throws Exception;
+	
 }

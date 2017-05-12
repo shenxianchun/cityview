@@ -72,8 +72,6 @@
   			<result column="grade" property="grade"/>
   		</collection>
   	</resultMap>
-  	
-  	
   	<!-- 根据传入的城市统计每个月质量等级的天数end -->
   	
   	<!-- 空气质量指数日全量列表start -->
@@ -92,9 +90,20 @@
   	</select>
   	<!-- 根据传入的城市和月份统计每月质量等级的天数end -->
   	
+  	<!-- 统计历史以来不同质量等级的天数start -->
+  	<select id="findCountGradeDay" parameterType="com.cityview.po.Aqiday" resultType="com.cityview.po.AqidayCustom">
+  		SELECT count(grade)AS numGrade,grade 
+  		FROM aqiday 
+  		WHERE cityname=#{cityname} GROUP BY grade
+  	</select>
+  	<!-- 统计历史以来不同质量等级的天数end -->
   	
-  	
-  	
-  	
+  	<!-- 查询质量等级不同的月数start -->
+  	<select id="findCountGradeMonth" parameterType="com.cityview.po.Aqimonth" resultType="com.cityview.po.AqimonthCustom">
+  		select count(month)AS numGrade,grade 
+  		FROM aqimonth 
+  		WHERE aqimonth.cityname=#{cityname} GROUP BY grade
+  	</select>
+  	<!-- 查询质量等级不同的月数end -->
   	
 </mapper>

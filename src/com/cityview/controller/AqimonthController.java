@@ -1,7 +1,11 @@
 package com.cityview.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -117,16 +121,48 @@ public class AqimonthController {
 		@RequestMapping("/queryAqiMonthCountGrade")
 		public @ResponseBody List<AqimonthQueryVo> queryAqiMonthCountGrade(@RequestBody AqimonthCustom aqimonthCustom) throws Exception{
 			System.out.println("===================每月AQI质量等级天数统计=========="+aqimonthCustom.getCityname());
+			List<AqimonthQueryVo> aqimonthQuerylist=new ArrayList<AqimonthQueryVo>();//需要返回的数据
 			
+			Map<String,String> map=new HashMap<String, String>();
+			
+			//以下是数据库传过来的数据
 			List<AqimonthQueryVo> aqimonthQueryVoList=aqimonthService.findAqiMonthCountGrade(aqimonthCustom);
+			
 			for(AqimonthQueryVo li:aqimonthQueryVoList){
 				System.out.println(li.getMonthday()+"-------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+				AqimonthQueryVo aqimonthQueryVo=new AqimonthQueryVo();
+				aqimonthQueryVo.setMonthday(li.getMonthday());//将查询出来的月份重新设置
+				
 				List<AqimonthCustom> aqimonthCustomList=li.getAqimonthCustoms();
+				map.put("严重污染", "0");
+				map.put("重度污染", "0");
+				map.put("中度污染", "0");
+				map.put("轻度污染", "0");
+				map.put("良", "0");
+				map.put("优", "0");
 				for(AqimonthCustom aqili:aqimonthCustomList){
-					System.out.println(aqili.getGrade()+":"+aqili.getNumGrade()+"天");
+					//System.out.println(aqili.getGrade()+":"+aqili.getNumGrade()+"天");
+					map.put(aqili.getGrade(), aqili.getNumGrade());
 				}
+				List<AqimonthCustom> aqimonthCustoms=new ArrayList<AqimonthCustom>();
+				//输出map出来看看
+				Set<String> set = map.keySet();
+				Iterator<String> it = set.iterator();
+				while (it.hasNext()) {
+					String Typekey = it.next();
+					String Typevalue = map.get(Typekey);
+					AqimonthCustom aqimonthCustombean=new AqimonthCustom();
+					aqimonthCustombean.setGrade(Typekey);
+					aqimonthCustombean.setNumGrade(Typevalue);
+					aqimonthCustoms.add(aqimonthCustombean);
+					System.out.println("这是map中的："+Typekey+"->>"+Typevalue);
+				}
+				aqimonthQueryVo.setAqimonthCustoms(aqimonthCustoms);
+				aqimonthQuerylist.add(aqimonthQueryVo);
+				System.out.println("--------------分割线----------------------------");
 			}
-			return aqimonthQueryVoList;
+			
+			return aqimonthQuerylist;
 		}
 		
 		

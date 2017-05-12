@@ -1,5 +1,4 @@
 $(function(){
-
 	$.ajax({
 		type:'post',
 		url:'aqimonth/table.action',
@@ -30,6 +29,7 @@ $(function(){
 				datamax.push(response[i].maxaqi);
 				dataver.push(response[i].aqi);
 			}
+			//alert(month);
 			option = {
 				    tooltip : {
 				        trigger: 'axis'
@@ -114,13 +114,74 @@ $(function(){
 			var mychart=echarts.init(document.getElementById("container"),"shine");
 			mychart.setOption(option);
 //------------------------------------------------------------------------------------------------				
-			
-			option1 = {
+//			var chart=echarts.init(document.getElementById("aqimonthcount"),"helianthus");
+//			chart.setOption(option);
+		}
+	});
+	$.ajax({
+		type:'post',
+		url:'aqimonth/queryAqiMonthCountGrade.action',
+		contentType:'application/json;charset=utf-8',
+		//数据格式是json串
+		data:'{"cityname":"深圳"}',
+		success:function(response){//返回json结果
+			var month=[];//月份
+			var seriousdata=[];//严重污染
+			var severedata=[];//重度污染
+			var moderatedata=[];//中度污染
+			var lightdata=[];//轻度污染
+			var gooddata=[];//良
+			var excellentdata=[];//优
+			//var seriesdata=[];//指标
+//			alert(response[0].monthday);
+//			alert(response[0].aqimonthCustoms[0].grade+":"+response[0].aqimonthCustoms[0].numGrade);
+			for(var i=0;i<response.length;i++){
+				month.push(response[i].monthday);
+				//alert(response[i].monthday);
+				for(var j=0;j<response[i].aqimonthCustoms.length;j++){
+					//alert(response[i].aqimonthCustoms[j].grade+":"+j+":"+response[i].aqimonthCustoms[j].numGrade);
+					var strkey=response[i].aqimonthCustoms[j].grade;
+					var strvalue=response[i].aqimonthCustoms[j].numGrade;
+					//alert(strkey+":->"+strvalue);
+					var str1="严重污染";
+					var str2="重度污染";
+					var str3="中度污染";
+					var str4="轻度污染";
+					var str5="良";
+					var str6="优";
+					if(strkey==str1){
+						seriousdata.push(strvalue);
+					}
+					if(strkey==str2){
+						severedata.push(strvalue);
+					}
+					if(strkey==str3){
+						moderatedata.push(strvalue);
+					}
+					if(strkey==str4){
+						lightdata.push(strvalue);
+					}
+					if(strkey==str5){
+						gooddata.push(strvalue);
+					}
+					if(strkey==str6){
+						excellentdata.push(strvalue);
+					}
+				}
+			}
+//			alert(seriousdata);
+//			alert(severedata);
+//			alert("中度：{"+moderatedata+"}");
+//			alert(lightdata);
+//			alert(gooddata);
+//			alert(excellentdata);
+//			alert(lightdata);
+			optioncount = {
 				    tooltip : {
 				        trigger: 'axis'
 				    },
 				    legend: {
-				        data:['最大值','平均值','最小值']
+				    	data:['严重污染','重度污染','轻度污染','良','优']
 				    },
 				    toolbox: {
 				        show : true,
@@ -132,71 +193,67 @@ $(function(){
 				            saveAsImage : {show: true}
 				        }
 				    },
-				    tooltip: {//鼠标提示框
-				    	show: true,
-				    	z: 8,
-				    	showContent: true,
-				    	trigger: 'axis',//显示y轴的内容，为item显示x轴
-//				    	formatter: '{a1}:{c1}, {a2}, {b2}, {c2},{a3}, {b3}, {c3}',
-				    	//islandFormatter: '{a} < br/>{b} : {c}',
-				    	showDelay: 20,
-				    	hideDelay: 100,
-				    	transitionDuration: 0.4,
-				    	backgroundColor: '#FF0F46',//背景颜色
-				    	borderColor: '#FF0F46',
-				    	borderRadius: 4,
-				    	borderWidth: 0,
-				    	padding: 5,
-				    	textStyle: {
-//				    		color: 'blue',//文本的颜色
-				    		decoration: 'none',
-				    		fontFamily: 'Arial, Verdana, sans...',
-				    		fontSize: 12
-				    	}
-				    },
 				    calculable : true,
 				    xAxis : [
 				        {
 				            type : 'category',
 				            boundaryGap : false,
-				            data : month
+				            data :month
 				        }
 				    ],
 				    yAxis : [
 				        {
-				            type : 'value',
-			            	 axisLabel : {
-					                formatter: '{value}天'
-					            }
+				            type : 'value'
 				        }
 				    ],
-				    
 				    series : [
 				        {
-				            name:'最大值',
+				        	name:'严重污染',
 				            type:'line',
 				            smooth:true,
 				            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-				            data:datamax
+				            data:seriousdata
 				        },
 				        {
-				            name:'平均值',
+				            name:'重度污染',
 				            type:'line',
 				            smooth:true,
 				            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-				            data:dataver
+				            data:severedata
 				        },
 				        {
-				            name:'最小值',
+				            name:'中度污染',
 				            type:'line',
 				            smooth:true,
 				            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-				            data:datamin
+				            data:moderatedata
+				        },
+				        {
+				            name:'轻度污染',
+				            type:'line',
+				            smooth:true,
+				            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+				            data:lightdata
+				        },
+				        {
+				            name:'良',
+				            type:'line',
+				            smooth:true,
+				            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+				            data:gooddata
+				        },
+				        {
+				            name:'优',
+				            type:'line',
+				            smooth:true,
+				            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+				            data:excellentdata
 				        }
 				    ]
 				};
 				var chart=echarts.init(document.getElementById("aqimonthcount"),"helianthus");
-				chart.setOption(option1);
+				chart.setOption(optioncount);
 		}
 	});
+	
 })
