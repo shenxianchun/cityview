@@ -41,6 +41,12 @@ public class AqimonthController {
 		//历史空气质量指数月全量查询
 		//@RequestMapping实现 对queryItems方法和url进行映射，一个方法对应一个url
 		//一般建议将url和方法写成一样.action可加可不加
+		/**
+		 * 空气质量指数查询(月全量)
+		 * @param aqimonth
+		 * @return
+		 * @throws Exception
+		 */
 		@RequestMapping("/table")
 		public @ResponseBody List<Aqimonth> queryAqimonth(@RequestBody Aqimonth aqimonth) throws Exception{
 			System.out.println("------空气质量指数查询start-----"+aqimonth.getCityname());
@@ -53,6 +59,11 @@ public class AqimonthController {
 			return aqimonthlist;
 		}
 		
+		/**
+		 * 批量操作，将AQI相关数据爬过来批量插入数据库
+		 * @return
+		 * @throws Exception
+		 */
 		@RequestMapping("/insert")
 		public @ResponseBody String insertAqimonth() throws Exception{
 			AOI aqi=new AOI();
@@ -100,6 +111,12 @@ public class AqimonthController {
 //			modelAndView.setViewName("aqi/dayaqi");
 //			return modelAndView;
 //		}
+		/**
+		 * 查询AQI当月日全量
+		 * @param aqiday
+		 * @return
+		 * @throws Exception
+		 */
 		@RequestMapping("/queryAqidayAll")
 		public @ResponseBody List<Aqiday> queryAqidayAll(@RequestBody Aqiday aqiday) throws Exception{
 			System.out.println("====================查询当月每天的AQI=========="+aqiday.getCityname()+aqiday.getDay());
@@ -107,6 +124,12 @@ public class AqimonthController {
 			return aqidaylist;
 		}
 		
+		/**
+		 * 根据传入的cityname和月份
+		 * @param aqiday
+		 * @return 返回统计对应的天气状况及对应的总天数
+		 * @throws Exception
+		 */
 		@RequestMapping("/queryAqidayCountGrade")
 		public @ResponseBody List<AqidayCustom> queryAqidayCountGrade(@RequestBody Aqiday aqiday) throws Exception{
 			System.out.println("===================每月AQI质量等级天数统计=========="+aqiday.getCityname()+aqiday.getDay());
@@ -118,6 +141,12 @@ public class AqimonthController {
 			return aqidayCustomsList;
 		}
 		//一对多映射
+		/**
+		 * 根据传入的城市统计每个月不同质量等级的天数
+		 * @param aqimonthCustom
+		 * @return
+		 * @throws Exception
+		 */
 		@RequestMapping("/queryAqiMonthCountGrade")
 		public @ResponseBody List<AqimonthQueryVo> queryAqiMonthCountGrade(@RequestBody AqimonthCustom aqimonthCustom) throws Exception{
 			System.out.println("===================每月AQI质量等级天数统计=========="+aqimonthCustom.getCityname());
@@ -164,6 +193,30 @@ public class AqimonthController {
 			
 			return aqimonthQuerylist;
 		}
+		/**
+		 * 统计历史以来不同质量等级的天数
+		 * @param aqiday
+		 * @return
+		 * @throws Exception
+		 */
+		@RequestMapping("/queryCountGradeDay")
+		public @ResponseBody List<AqidayCustom> queryCountGradeDay(@RequestBody Aqiday aqiday) throws Exception{	
+			List<AqidayCustom> aqidayCustoms=aqimonthService.findCountGradeDay(aqiday);
+			return aqidayCustoms;
+		}
+		
+		/**
+		 * 查询质量等级不同的月数
+		 * @param aqimonth
+		 * @return
+		 * @throws Exception
+		 */
+		@RequestMapping("/queryCountGradeMonth")
+		public @ResponseBody List<AqimonthCustom> queryCountGradeMonth(@RequestBody Aqimonth aqimonth) throws Exception{
+			List<AqimonthCustom> aqimonthCustoms=aqimonthService.findCountGradeMonth(aqimonth);
+			return aqimonthCustoms;
+		}
+		
 		
 		
 }

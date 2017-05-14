@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>空气质量数日统计</title>
+	<title>历史天气详情统计</title>
 	<link rel="stylesheet" href="../css/semantic.min.css" />
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<style type="text/css">
@@ -19,7 +17,7 @@
 <body>
 	<div class="login"></div>
 	<div class="line">
-		<div class="top">宜居城市信息可视化平台</div>
+		<div class="top">宜居城市可视化平台</div>
 		<!--导航栏start-->
 		<div class="t_navigation">
 			<div id="topmenu" class="ui inverted  menu">
@@ -103,9 +101,23 @@
 <div class="search">
 			<table class="ui table">
 				<tr align="center">
-					<td width="200px" style="color:red;text-align:left;">当前的位置>>空气质量指数查看</td>
-					<td style="font-size:24px;color:rgba(18, 222, 17, 0.67); width:200px;">空气质量指数日历史数据</td>
-					<td width="240px"></td>
+					<td width="200px" style="color:red;text-align:left;">当前的位置>>历史天气详情</td>
+					<td style="font-size:24px;color:rgba(18, 222, 17, 0.67); width:200px;">历史天气详情数据</td>
+					<td width="240px">
+						<div class="ui dropdown">
+							<input type="hidden" id="information" value=""/>
+							<div class="default text">选择查看的日期</div>
+							<i class="dropdown icon"></i><!-- 向下的箭头 -->
+							<div class="menu">
+								<div class="item"><a href='weatherday.jsp?cityname=<%=request.getParameter("cityname") %>&date=2012-07'>2012-07</a></div>
+								<div class="item"><a href='weatherday.jsp?cityname=<%=request.getParameter("cityname") %>&date=2013-07'>2013-07</a></div>
+								<div class="item"><a href='weatherday.jsp?cityname=<%=request.getParameter("cityname") %>&date=2013-02'>2013-02</a></div>
+								<div class="item"><a href='weatherday.jsp?cityname=<%=request.getParameter("cityname") %>&date=2014-07'>2014-07</a></div>
+								<div class="item"><a href='weatherday.jsp?cityname=<%=request.getParameter("cityname") %>&date=2015-07'>2015-07</a></div>
+								<div class="item"><a href='weatherday.jsp?cityname=<%=request.getParameter("cityname") %>&date=2016-07'>2016-07</a></div>
+							</div>
+						</div>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -115,31 +127,29 @@
 		<div class="online">
 			<!--AQI月统计start-->
 			<div>
+			<div id="wendu" style="width:800px;height:300px;margin:0 auto;margin-top:20px;">
+				<!-- 温度趋势 -->
+			</div>
 				<div class="title">
 					<span class="cityname">
-						<span id="month"><%=request.getParameter("month") %></span>
 						<span id="cityname_city"><%=request.getParameter("cityname") %></span>
-					</span>空气质量指数日历史数据
-					
+						<span id="date"><%=request.getParameter("date") %></span>
+					</span>天气详情
 				</div>
 				<div class="monthaqi">
 					<table width="900px" class="ui selectable celled table" style="text-align: center;">
 						<thead >
 							<tr>
 								<th width="70px" height="50px" style="background-color:#38C19B;">日期</th>
-								<th width="70px" style="background-color:#38C19B;">AQI</th>
-								<th width="70px" style="background-color:#38C19B;">范围</th>
-								<th width="70px" style="background-color:#38C19B;">质量等级</th>
-								<th width="70px" style="background-color:#38C19B;">PM2.5</th>
-								<th width="70px" style="background-color:#38C19B;">PM10</th>
-								<th width="70px" style="background-color:#38C19B;">SO2</th>
-								<th width="70px" style="background-color:#38C19B;">CO</th>
-								<th width="70px" style="background-color:#38C19B;">NO2</th>
-								<th width="70px" style="background-color:#38C19B;">O3</th>
+								<th width="70px" style="background-color:#38C19B;">最高气温</th>
+								<th width="70px" style="background-color:#38C19B;">最低气温</th>
+								<th width="70px" style="background-color:#38C19B;">天气</th>
+								<th width="70px" style="background-color:#38C19B;">风向</th>
+								<th width="70px" style="background-color:#38C19B;">风力</th>
 							</tr>
 						</thead>
-						<tbody id="aqimonth-table">
-							<!-- 空气质量指数日全量指数统计列表 -->
+						<tbody id="weachermonth-table">
+							<!--天气状况月详情列表 -->
 							
 						</tbody>
 					</table>
@@ -149,23 +159,15 @@
 			
 			<!--AQT月变化趋势start-->
 			 <div id="monthchart">
-			 	<div class="title2">
+			 	<div class="title2" style="margin-left:450px;">
 			 		<span class="cityname">
 						<span><%=request.getParameter("cityname") %></span>
-						<span><%=request.getParameter("month") %></span>
-			 		</span>月空气质量指数（AQI）变化趋势</div>
-			 	<div id="container" class="chr"></div>
+						<span><%=request.getParameter("date") %></span>
+			 		</span>月天气统计</div>
+			 	<div id="weathercount" style="background:#333;width:800px;height:300px;margin:0 auto;" class="chr"></div>
 			 </div>
 			<!--AQT月变化趋势end-->
-				
-			<div class="count">
-				<div class="title3">
-					<span class="cityname">
-						<span><%=request.getParameter("cityname") %></span>
-						<span><%=request.getParameter("month") %></span>
-					</span>月pm2.5,pm10,so2变化趋势</div>
-				<div id="aqimonthcount" class="chr"></div>
-			</div>
+			
 			<!-- 饼图统计start -->
 			<div class="countday">
 				<!--AQI月统计数据start-->
@@ -181,12 +183,11 @@
 	</div>
 <!--内容栏end-->	
 
-
-
 <script type="text/javascript" src="../js/echarts-all.js"></script>
 <script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="../js/semantic.min.js"></script>
-<script type="text/javascript" src="js/aqiday.js"></script>
+
+<script type="text/javascript" src="Monthweather.js"></script>
 
 <script type="text/javascript">
 $(function(){

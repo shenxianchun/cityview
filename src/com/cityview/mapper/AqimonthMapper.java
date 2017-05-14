@@ -25,7 +25,8 @@ public interface AqimonthMapper {
 	 */
 	public List<Aqimonth> findAqimonthList(Aqimonth aqimonth)throws Exception;
 	
-	/**插入月全量空气质量指数
+	/**
+	 * 批量插入月全量空气质量指数
 	 * @param aqimonth
 	 * @throws Exception
 	 */
@@ -68,7 +69,7 @@ public interface AqimonthMapper {
 	
 	
 	/**
-	 * 统计历史以来不同空气质量的天数start
+	 * 统计历史以来不同空气质量的天数
 	 * @param aqiday
 	 * @return
 	 * @throws Exception

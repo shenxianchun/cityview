@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	      <setting name="callSettersOnNulls" value="true"/>
 	  </settings>
 	<!-- 全局setting配置,根据需要添加 -->
-
+	
 	<!-- 配置别名 -->
 	<typeAliases>
 		<!-- 批量扫描别名 -->

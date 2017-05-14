@@ -14,7 +14,12 @@
 		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
 		<!-- 城市管理service -->
 		<bean id="cityService" class="com.cityview.service.impl.CityServiceImpl"/>
+		
 		<!-- 空气质量指数管理service -->
 		<bean id="aqimonthService" class="com.cityview.service.impl.AqimonthServiceImpl"/>
+		
+		<!-- 历史天气统计service -->
+		<bean id="weatherService" class="com.cityview.service.impl.WeatherServiceImpl"/>
+		
 		
 </beans>

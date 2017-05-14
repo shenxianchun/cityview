@@ -58,8 +58,8 @@ public class pingying{
                             } catch (BadHanyuPinyinOutputFormatCombination e) {   
                                     e.printStackTrace();   
                             }   
-                    } else {   
-                            pybf.append(arr[i]);   
+                    } else {
+                            pybf.append(arr[i]);
                     }   
             }   
             return pybf.toString();   

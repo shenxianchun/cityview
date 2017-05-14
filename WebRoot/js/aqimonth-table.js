@@ -255,5 +255,145 @@ $(function(){
 				chart.setOption(optioncount);
 		}
 	});
+//-----------------------------------------------------------------------------------------------------
+	$.ajax({
+		type:'post',
+		url:'aqimonth/queryCountGradeMonth.action',
+		contentType:'application/json;charset=utf-8',
+		//数据格式是json串
+		data:'{"cityname":"北京"}',
+		success:function(response){//返回json结果
+			var numGrade=[],grade=[];
+			var datanum=[];
+			for(var i=0;i<response.length;i++){
+				var item={
+					value:response[i].numGrade,
+					name:response[i].grade
+				}
+				grade.push(response[i].grade);
+				datanum.push(item);
+			}
+			optionnum = {
+				    title : {
+				        text: '月统计数据',
+				        subtext: '数据网',
+				        x:'center'
+				    },
+				    tooltip : {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b} : {c} 月({d}%)"
+				    },
+				    legend: {
+				        orient : 'vertical',
+				        x : 'left',
+				        data:grade
+				    },
+				    toolbox: {
+				        show : true,
+				        feature : {
+				            mark : {show: true},
+				            dataView : {show: true, readOnly: false},
+				            magicType : {
+				                show: true, 
+				                type: ['pie', 'funnel'],
+				                option: {
+				                    funnel: {
+				                        x: '25%',
+				                        width: '50%',
+				                        funnelAlign: 'left',
+				                        max: 1548
+				                    }
+				                }
+				            },
+				            restore : {show: true},
+				            saveAsImage : {show: true}
+				        }
+				    },
+				    calculable : true,
+				    series : [
+				        {
+				            name:'质量等级',
+				            type:'pie',
+				            radius : '55%',
+				            center: ['50%', '60%'],
+				            data:datanum
+				        }
+				    ]
+				};
+			var mychart=echarts.init(document.getElementById("monthcount"),"default");
+			mychart.setOption(optionnum);
+		}
+	});
+//-------统计历史以来不同质量等级的天数start------------------------------------------------------------------------------------------
+	$.ajax({
+		type:'post',
+		url:'aqimonth/queryCountGradeDay.action',
+		contentType:'application/json;charset=utf-8',
+		//数据格式是json串
+		data:'{"cityname":"深圳"}',
+		success:function(response){//返回json结果
+			var numGrade=[],grade=[];
+			var datanum=[];
+			for(var i=0;i<response.length;i++){
+				var item={
+					value:response[i].numGrade,
+					name:response[i].grade
+				}
+				grade.push(response[i].grade);
+				datanum.push(item);
+			}
+			optiodaynnum = {
+				    title : {
+				        text: '历史天数统计数据',
+				        subtext: '数据网',
+				        x:'center'
+				    },
+				    tooltip : {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b} : {c} 天({d}%)"
+				    },
+				    legend: {
+				        orient : 'vertical',
+				        x : 'left',
+				        data:grade
+				    },
+				    toolbox: {
+				        show : true,
+				        feature : {
+				            mark : {show: true},
+				            dataView : {show: true, readOnly: false},
+				            magicType : {
+				                show: true, 
+				                type: ['pie', 'funnel'],
+				                option: {
+				                    funnel: {
+				                        x: '25%',
+				                        width: '50%',
+				                        funnelAlign: 'left',
+				                        max: 1548
+				                    }
+				                }
+				            },
+				            restore : {show: true},
+				            saveAsImage : {show: true}
+				        }
+				    },
+				    calculable : true,
+				    series : [
+				        {
+				            name:'质量等级',
+				            type:'pie',
+				            radius : '55%',
+				            center: ['50%', '60%'],
+				            data:datanum
+				        }
+				    ]
+				};
+			var mychart=echarts.init(document.getElementById("daycount"),"default");
+			mychart.setOption(optiodaynnum);
+		}
+	});
+//-------统计历史以来不同质量等级的天数end------------------------------------------------------------------------------------------
+
 	
 })

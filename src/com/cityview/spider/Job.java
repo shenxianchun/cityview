@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 
 public class Job {
 	public static void main(String[] args) {
-		String url="http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=java";
+		String url="http://sou.zhaopin.com/jobs/searchresult.ashx?jl=北京&kw=CTO&sf=50001&st=99999";
 		for(int i=0;i<99;i++){
 			test(url+"&p="+i);
 		}

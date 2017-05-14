@@ -38,7 +38,8 @@ public interface AqimonthService {
 	 */
 	public int findAqi(String aqiurl)throws Exception;
 	
-	/**插入日全量空气质量指数
+	/**
+	 * 插入日全量空气质量指数
 	 * @param aqidays
 	 * @throws Exception
 	 */
@@ -67,7 +68,7 @@ public interface AqimonthService {
 	public List<AqimonthQueryVo> findAqiMonthCountGrade(AqimonthCustom aqimonthCustom)throws Exception;
 	
 	/**
-	 * 统计历史以来不同质量等级的天数start
+	 * 统计历史以来不同质量等级的天数
 	 * @param aqiday
 	 * @return
 	 * @throws Exception
@@ -79,5 +80,5 @@ public interface AqimonthService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<AqimonthCustom>findCountGradeMonth(Aqimonth aqimonth)throws Exception;
+	public List<AqimonthCustom> findCountGradeMonth(Aqimonth aqimonth)throws Exception;
 }

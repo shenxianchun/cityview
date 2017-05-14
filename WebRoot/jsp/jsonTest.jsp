@@ -90,6 +90,22 @@ function responseday(){
 	
 }
 
+function weather(){
+	$.ajax({
+		type:'post',
+		url:'${pageContext.request.contextPath }/weather/insertWeatherMonth.action',
+		//请求是key/value这里不需要指定contentType，因为默认就 是key/value类型
+		contentType:'application/json;charset=utf-8',
+		//数据格式是json串，商品信息
+		data:'{"cityname":"大连"}',
+		success:function(data){
+			alert(data);
+		}
+	});
+	
+}
+
+
 
 
 </script>
@@ -99,5 +115,9 @@ function responseday(){
 <input type="button" onclick="responseJson()" value="请求key/value，输出是json"/>
 <input type="button" onclick="responseip()" value="访问者ip测试"/>
 <input type="button" onclick="responseday()" value="每月统计天数测试"/>
+
+
+<input type="button" onclick="weather()" value="插入历史天气"/>
+
 </body>
 </html>

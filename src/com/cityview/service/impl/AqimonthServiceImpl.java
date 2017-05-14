@@ -72,5 +72,21 @@ public class AqimonthServiceImpl implements AqimonthService{
 		// TODO Auto-generated method stub
 		return aqimonthMapper.findAqiMonthCountGrade(aqimonthCustom);
 	}
+
+
+
+	@Override
+	public List<AqidayCustom> findCountGradeDay(Aqiday aqiday) throws Exception {
+		// TODO Auto-generated method stub
+		return aqimonthMapper.findCountGradeDay(aqiday);
+	}
+
+
+
+	@Override
+	public List<AqimonthCustom> findCountGradeMonth(Aqimonth aqimonth) throws Exception {
+		// TODO Auto-generated method stub
+		return aqimonthMapper.findCountGradeMonth(aqimonth);
+	}
 	
 }

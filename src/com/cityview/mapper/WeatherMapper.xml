@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间，作用就是对sql进行分类化管理，理解sql隔离 
+注意：使用mapper代理方法开发，namespace有特殊重要的作用，namespace等于mapper接口地址
+-->
+<mapper namespace="com.cityview.mapper.WeatherMapper">
+	<!-- 批量插入历史天气start -->
+	<insert id="insertWeatherMonth" parameterType="com.cityview.po.Monthweather">
+		<selectKey resultType ="java.lang.Integer" keyProperty= "id" order= "AFTER">
+			SELECT LAST_INSERT_ID()
+        </selectKey >
+		INSERT INTO monthweather(cityname,date,maxtemperature,mintemperature,weather,direction,power,create_time)
+		VALUES
+		<foreach collection="list" item="weatnerList" index="index" separator=",">
+  			(#{weatnerList.cityname},#{weatnerList.date},#{weatnerList.maxtemperature},
+  			#{weatnerList.mintemperature},#{weatnerList.weather},#{weatnerList.direction},
+  			#{weatnerList.power},NOW())
+  		</foreach>
+	</insert>
+	<!-- 批量插入历史天气end -->
+	
+	<!-- 传入月份链接统计该月份的数据有无 有：>0;无：=0 start-->
+	<select id="findCountWeacherUrl" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT COUNT(cityurl) FROM weatherurl WHERE cityurl='${value}'
+	</select>
+	<!-- 传入月份接统计该月份的数据有无 有：>0;无：=0 end-->
+	
+	<!-- 插入月份链接start -->
+	<insert id="insertWeatherUrl" parameterType="java.lang.String">
+		INSERT INTO weatherurl(cityurl,create_time)
+		VALUES('${value}',NOW())
+	</insert>
+	<!-- 插入月份链接end -->
+	
+	<!-- 天气状况统计start -->
+	<select id="findCountweather" parameterType="java.lang.String" resultType="com.cityview.po.Monthweather">
+		SELECT count(weather)AS count,weather 
+		FROM monthweather 
+		WHERE cityname='${value}' GROUP BY weather ORDER BY count DESC
+	</select>
+	<!-- 天气状况统计end -->
+	
+	<!-- 风向统计start -->
+	<select id="findCountdirection" parameterType="java.lang.String" resultType="com.cityview.po.Monthweather">
+		SELECT count(direction)AS count,direction 
+		FROM monthweather 
+		WHERE cityname='${value}' GROUP BY direction
+	</select>
+	<!-- 风向统计end -->
+	
+	<!-- 风力统计start -->
+	<select id="findCountpower" parameterType="java.lang.String" resultType="com.cityview.po.Monthweather">
+		SELECT count(power)AS count,power 
+		FROM monthweather 
+		WHERE cityname='${value}' GROUP BY power ORDER BY power
+	</select>
+	<!-- 风力统计end -->
+	
+	
+	<!-- ==================每月start================== -->
+	
+	<!-- 每月天气状况统计start -->
+	<select id="findMonthcountweather" parameterType="com.cityview.po.Monthweather" resultType="com.cityview.po.Monthweather">
+		SELECT count(weather)AS count,weather 
+		FROM monthweather 
+		WHERE cityname=#{cityname} AND`date` LIKE '${date}%' GROUP BY weather
+	</select>
+	<!-- 每月天气状况统计end -->
+	
+	<!-- 每月风向统计start -->
+	<select id="findMonthCountdirection" parameterType="com.cityview.po.Monthweather" resultType="com.cityview.po.Monthweather">
+		SELECT count(direction)AS count,direction 
+		FROM monthweather 
+		WHERE cityname=#{cityname} AND`date` LIKE '${date}%' GROUP BY direction ORDER BY count DESC
+	</select>
+	<!-- 每月风向统计end -->
+	
+	<!-- 每月风力统计start -->
+	<select id="findMonthCountpower" parameterType="com.cityview.po.Monthweather" resultType="com.cityview.po.Monthweather">
+		SELECT count(power)AS count,power 
+		FROM monthweather 
+		WHERE cityname=#{cityname} AND`date` LIKE '${date}%' GROUP BY power ORDER BY count DESC
+	</select>
+	<!-- 每月风力统计end -->
+	
+	<!-- 每月天气状况所有数据查询start -->
+	<select id="findWeatherMonthAll" parameterType="com.cityview.po.Monthweather" resultType="com.cityview.po.Monthweather">
+		SELECT monthweather.* 
+		FROM monthweather 
+		WHERE cityname=#{cityname} AND `date` LIKE '${date}%'
+	</select>
+	<!-- 每月天气状况所有数据查询end -->
+	
+	<!-- ==================每月end================== -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

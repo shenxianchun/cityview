@@ -20,8 +20,26 @@ public class Monthweather {
     private String power;
 
     private Date createTime;
+    
+    private String count;
+    
+    
 
-    public Integer getId() {
+    /**
+	 * @return the count
+	 */
+	public String getCount() {
+		return count;
+	}
+
+	/**
+	 * @param count the count to set
+	 */
+	public void setCount(String count) {
+		this.count = count;
+	}
+
+	public Integer getId() {
         return id;
     }
 
