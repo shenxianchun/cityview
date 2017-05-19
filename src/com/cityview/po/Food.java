@@ -10,6 +10,8 @@ public class Food {
     private String title;
 
     private String heat;
+    
+    private String foodurl;
 
     private String imageurl;
 
@@ -48,8 +50,23 @@ public class Food {
     public void setHeat(String heat) {
         this.heat = heat == null ? null : heat.trim();
     }
+    
+    
+    /**
+	 * @return the foodurl
+	 */
+	public String getFoodurl() {
+		return foodurl;
+	}
 
-    public String getImageurl() {
+	/**
+	 * @param foodurl the foodurl to set
+	 */
+	public void setFoodurl(String foodurl) {
+		this.foodurl = foodurl;
+	}
+
+	public String getImageurl() {
         return imageurl;
     }
 

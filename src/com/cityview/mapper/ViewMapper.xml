@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cityview.mapper.ViewMapper">
+	<!-- 批量插入风景start -->
+	<insert id="insertView" parameterType="com.cityview.po.Viewspot">
+		<selectKey resultType ="java.lang.Integer" keyProperty= "id" order= "AFTER">
+			SELECT LAST_INSERT_ID()
+        </selectKey>
+		INSERT INTO viewspot(cityname,title,peoplenum,viewurl,imageurl,introduction,price,create_time)
+		VALUES
+		<foreach collection="list" item="viewList" index="index" separator=",">
+  			(#{viewList.cityname},#{viewList.title},#{viewList.peoplenum},
+  			#{viewList.viewurl},#{viewList.imageurl},#{viewList.introduction},
+  			#{viewList.price},NOW())
+  		</foreach>
+	</insert>
+	<!-- 批量插入风景end -->
+	
+	<!-- 查找对应的城市风景在数据库中是否存在start -->
+	<select id="findViewcity" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM viewspot WHERE cityname='${value}'
+	</select>
+	<!-- 查找对应的城市风景在数据库中是否存在end -->
+	
+	<!-- 查找对应城市的全部风景start -->
+	<select id="findViewAll" parameterType="java.lang.String" resultType="com.cityview.po.Viewspot">
+		SELECT viewspot.* 
+		FROM viewspot 
+		WHERE cityname='${value}' ORDER BY cast(viewspot.peoplenum as signed) DESC
+	</select>
+	<!-- 查找对应城市的全部风景end -->
+	
+	
+	
+</mapper>

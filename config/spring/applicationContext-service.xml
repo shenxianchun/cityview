@@ -21,5 +21,12 @@
 		<!-- 历史天气统计service -->
 		<bean id="weatherService" class="com.cityview.service.impl.WeatherServiceImpl"/>
 		
+		<!-- 美食统计Service -->
+		<bean id="foodService" class="com.cityview.service.impl.FoodServiceImpl"/>
+		
+		<!-- 风景统计Service -->
+		<bean id="viewService" class="com.cityview.service.impl.ViewServiceImpl"/>
+		
+		
 		
 </beans>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cityview.mapper.FoodMapper">
+	<!-- 批量插入美食start -->
+	<insert id="insertFood" parameterType="com.cityview.po.Food">
+		<selectKey resultType ="java.lang.Integer" keyProperty= "id" order= "AFTER">
+			SELECT LAST_INSERT_ID()
+        </selectKey>
+		INSERT INTO food(cityname,title,heat,foodurl,imageurl,introduction,create_time)
+		VALUES
+		<foreach collection="list" item="foodList" index="index" separator=",">
+  			(#{foodList.cityname},#{foodList.title},#{foodList.heat},
+  			#{foodList.foodurl},#{foodList.imageurl},#{foodList.introduction},NOW())
+  		</foreach>
+	</insert>
+	<!-- 批量插入美食end -->
+	
+	<!-- 查找对应的城市美食在数据库中是否存在start -->
+	<select id="findFoodcity" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM food WHERE cityname='${value}'
+	</select>
+	<!-- 查找对应的城市美食在数据库中是否存在end -->
+	
+	<!-- 查找对应城市的全部美食start -->
+	<select id="findFoodAll" parameterType="java.lang.String" resultType="com.cityview.po.Food">
+		SELECT food.* 
+		FROM food 
+		WHERE cityname='${value}' ORDER BY cast(food.heat as signed) DESC
+	</select>
+	<!-- 查找对应城市的全部美食end -->
+	
+	
+	
+</mapper>

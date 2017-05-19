@@ -10,12 +10,10 @@ public class Viewspot {
     private String title;
 
     private String peoplenum;
-
+    
+    private String viewurl;
+    
     private String imageurl;
-
-    private String opentime;
-
-    private String traffic;
 
     private String price;
 
@@ -54,8 +52,22 @@ public class Viewspot {
     public void setPeoplenum(String peoplenum) {
         this.peoplenum = peoplenum == null ? null : peoplenum.trim();
     }
+    
+    /**
+	 * @return the viewurl
+	 */
+	public String getViewurl() {
+		return viewurl;
+	}
 
-    public String getImageurl() {
+	/**
+	 * @param viewurl the viewurl to set
+	 */
+	public void setViewurl(String viewurl) {
+		this.viewurl = viewurl;
+	}
+
+	public String getImageurl() {
         return imageurl;
     }
 
@@ -63,22 +75,7 @@ public class Viewspot {
         this.imageurl = imageurl == null ? null : imageurl.trim();
     }
 
-    public String getOpentime() {
-        return opentime;
-    }
-
-    public void setOpentime(String opentime) {
-        this.opentime = opentime == null ? null : opentime.trim();
-    }
-
-    public String getTraffic() {
-        return traffic;
-    }
-
-    public void setTraffic(String traffic) {
-        this.traffic = traffic == null ? null : traffic.trim();
-    }
-
+   
     public String getPrice() {
         return price;
     }

@@ -105,8 +105,34 @@ function weather(){
 	
 }
 
-
-
+function food(){
+	$.ajax({
+		type:'post',
+		url:'${pageContext.request.contextPath }/food/insertFood.action',
+		//请求是key/value这里不需要指定contentType，因为默认就 是key/value类型
+		contentType:'application/json;charset=utf-8',
+		//数据格式是json串，商品信息
+		data:'{"cityname":"上海"}',
+		success:function(data){
+			alert(data);
+		}
+	});
+	
+}
+function view(){
+	$.ajax({
+		type:'post',
+		url:'${pageContext.request.contextPath }/view/insertView.action',
+		//请求是key/value这里不需要指定contentType，因为默认就 是key/value类型
+		contentType:'application/json;charset=utf-8',
+		//数据格式是json串，商品信息
+		data:'{"cityname":"上海"}',
+		success:function(data){
+			alert(data);
+		}
+	});
+	
+}
 
 </script>
 </head>
@@ -116,8 +142,11 @@ function weather(){
 <input type="button" onclick="responseip()" value="访问者ip测试"/>
 <input type="button" onclick="responseday()" value="每月统计天数测试"/>
 
-
 <input type="button" onclick="weather()" value="插入历史天气"/>
+
+
+<input type="button" onclick="food()" value="插入美食"/>
+<input type="button" onclick="view()" value="插入风景"/>
 
 </body>
 </html>
