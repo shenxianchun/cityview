@@ -5,9 +5,13 @@ import java.util.Date;
 public class Job {
     private Integer id;
 
+    private String cityname;
+
     private String name;
 
     private String company;
+
+    private String joburl;
 
     private String minprice;
 
@@ -43,6 +47,14 @@ public class Job {
         this.id = id;
     }
 
+    public String getCityname() {
+        return cityname;
+    }
+
+    public void setCityname(String cityname) {
+        this.cityname = cityname == null ? null : cityname.trim();
+    }
+
     public String getName() {
         return name;
     }
@@ -57,6 +69,14 @@ public class Job {
 
     public void setCompany(String company) {
         this.company = company == null ? null : company.trim();
+    }
+
+    public String getJoburl() {
+        return joburl;
+    }
+
+    public void setJoburl(String joburl) {
+        this.joburl = joburl == null ? null : joburl.trim();
     }
 
     public String getMinprice() {

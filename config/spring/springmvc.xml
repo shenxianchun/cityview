@@ -96,7 +96,8 @@
 		
 		<!-- ===============================配置视图解析器   end=============================== -->
 		
-		
+		<!-- 单例模式管理 -->
+		<!-- <bean id="bloomFilter" class="com.cityview.bloomFilter.BloomFilter" lazy-init="default" scope="singleton"></bean> -->
 		
 		
 </beans>

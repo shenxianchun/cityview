@@ -28,5 +28,8 @@
 		<bean id="viewService" class="com.cityview.service.impl.ViewServiceImpl"/>
 		
 		
+		<!-- 职位信息Service -->
+		<bean id="jobService" class="com.cityview.service.impl.JobServiceImpl"/>
+		
 		
 </beans>
