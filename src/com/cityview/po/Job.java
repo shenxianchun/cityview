@@ -16,6 +16,8 @@ public class Job {
     private String minprice;
 
     private String maxprice;
+    
+    private String monthprice;
 
     private String location;
 
@@ -32,10 +34,16 @@ public class Job {
     private String companynature;
 
     private String joblabel;
+    
+    private String exp;
+    
+    private String demand;
+    
+    private String jobtype;
 
     private String industry;
 
-    private String releaseTime;
+    private String releasetime;
 
     private Date creatTime;
 
@@ -94,8 +102,22 @@ public class Job {
     public void setMaxprice(String maxprice) {
         this.maxprice = maxprice == null ? null : maxprice.trim();
     }
+    
+    /**
+	 * @return the monthprice
+	 */
+	public String getMonthprice() {
+		return monthprice;
+	}
 
-    public String getLocation() {
+	/**
+	 * @param monthprice the monthprice to set
+	 */
+	public void setMonthprice(String monthprice) {
+		this.monthprice = monthprice;
+	}
+
+	public String getLocation() {
         return location;
     }
 
@@ -159,23 +181,72 @@ public class Job {
         this.joblabel = joblabel == null ? null : joblabel.trim();
     }
 
-    public String getIndustry() {
+    /**
+	 * @return the exp
+	 */
+	public String getExp() {
+		return exp;
+	}
+
+	/**
+	 * @param exp the exp to set
+	 */
+	public void setExp(String exp) {
+		this.exp = exp;
+	}
+
+	public String getIndustry() {
         return industry;
     }
+	
+    /**
+	 * @return the demand
+	 */
+	public String getDemand() {
+		return demand;
+	}
 
-    public void setIndustry(String industry) {
+	/**
+	 * @param demand the demand to set
+	 */
+	public void setDemand(String demand) {
+		this.demand = demand;
+	}
+	
+	/**
+	 * @return the jobtype
+	 */
+	public String getJobtype() {
+		return jobtype;
+	}
+
+	/**
+	 * @param jobtype the jobtype to set
+	 */
+	public void setJobtype(String jobtype) {
+		this.jobtype = jobtype;
+	}
+
+	public void setIndustry(String industry) {
         this.industry = industry == null ? null : industry.trim();
     }
 
-    public String getReleaseTime() {
-        return releaseTime;
-    }
+   
+    /**
+	 * @return the releasetime
+	 */
+	public String getReleasetime() {
+		return releasetime;
+	}
 
-    public void setReleaseTime(String releaseTime) {
-        this.releaseTime = releaseTime == null ? null : releaseTime.trim();
-    }
+	/**
+	 * @param releasetime the releasetime to set
+	 */
+	public void setReleasetime(String releasetime) {
+		this.releasetime = releasetime;
+	}
 
-    public Date getCreatTime() {
+	public Date getCreatTime() {
         return creatTime;
     }
 

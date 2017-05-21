@@ -131,6 +131,20 @@ function view(){
 			alert(data);
 		}
 	});
+}
+
+function job(){
+	$.ajax({
+		type:'post',
+		url:'${pageContext.request.contextPath }/job/insertJob.action',
+		//请求是key/value这里不需要指定contentType，因为默认就 是key/value类型
+		contentType:'application/json;charset=utf-8',
+		//数据格式是json串，商品信息
+		data:'{"cityname":"北京","name":"java"}',
+		success:function(data){
+			alert(data);
+		}
+	});
 	
 }
 
@@ -147,6 +161,6 @@ function view(){
 
 <input type="button" onclick="food()" value="插入美食"/>
 <input type="button" onclick="view()" value="插入风景"/>
-
+<input type="button" onclick="job()" value="插入职位信息"/>
 </body>
 </html>

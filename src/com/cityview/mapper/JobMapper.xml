@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cityview.mapper.JobMapper">
+	<insert id="insertJoblist" parameterType="com.cityview.po.Job" >
+		<selectKey resultType ="java.lang.Integer" keyProperty= "id" order= "AFTER">
+			SELECT LAST_INSERT_ID()
+        </selectKey>
+		INSERT INTO job(cityname,joburl,`name`,joblabel,minprice,maxprice,monthprice,location,releasetime,jobnature,exp,education,demand,jobtype,description,company,scale,companynature,industry,address,creat_time)
+		VALUES
+		<foreach collection="list" item="joblist" index="index" separator=",">
+			(#{joblist.cityname},#{joblist.joburl},#{joblist.name},#{joblist.joblabel},#{joblist.minprice},
+			#{joblist.maxprice},#{joblist.monthprice},#{joblist.location},#{joblist.releasetime},
+			#{joblist.jobnature},#{joblist.exp},#{joblist.education},#{joblist.demand},
+			#{joblist.jobtype},#{joblist.description},#{joblist.company},#{joblist.scale},
+			#{joblist.companynature},#{joblist.industry},#{joblist.address},NOW())
+		</foreach>
+	</insert>
+	<!-- <select id="findJoburl" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM job WHERE joburl='${value}'
+	</select> -->
+</mapper>
