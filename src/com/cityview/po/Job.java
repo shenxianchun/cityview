@@ -46,8 +46,24 @@ public class Job {
     private String releasetime;
 
     private Date creatTime;
+    
+    private String total;//统计结果
+    
+    /**
+	 * @return the total
+	 */
+	public String getTotal() {
+		return total;
+	}
 
-    public Integer getId() {
+	/**
+	 * @param total the total to set
+	 */
+	public void setTotal(String total) {
+		this.total = total;
+	}
+
+	public Integer getId() {
         return id;
     }
 

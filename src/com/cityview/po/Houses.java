@@ -6,6 +6,8 @@ public class Houses {
     private Integer id;
 
     private String cityname;
+    
+    private String houseurl;
 
     private String title;
 
@@ -34,8 +36,41 @@ public class Houses {
     private String lable;
 
     private Date createTime;
+    
+    private String total;//统计结果
+    
+    private String area;//统计的地区
+    
+    
+    /**
+	 * @return the total
+	 */
+	public String getTotal() {
+		return total;
+	}
 
-    public Integer getId() {
+	/**
+	 * @param total the total to set
+	 */
+	public void setTotal(String total) {
+		this.total = total;
+	}
+
+	/**
+	 * @return the area
+	 */
+	public String getArea() {
+		return area;
+	}
+
+	/**
+	 * @param area the area to set
+	 */
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -50,8 +85,22 @@ public class Houses {
     public void setCityname(String cityname) {
         this.cityname = cityname == null ? null : cityname.trim();
     }
+    
+    /**
+	 * @return the houseurl
+	 */
+	public String getHouseurl() {
+		return houseurl;
+	}
 
-    public String getTitle() {
+	/**
+	 * @param houseurl the houseurl to set
+	 */
+	public void setHouseurl(String houseurl) {
+		this.houseurl = houseurl;
+	}
+
+	public String getTitle() {
         return title;
     }
 

@@ -145,7 +145,20 @@ function job(){
 			alert(data);
 		}
 	});
-	
+}
+
+function houses(){
+	$.ajax({
+		type:'post',
+		url:'${pageContext.request.contextPath }/houses/insertHouses.action',
+		//请求是key/value这里不需要指定contentType，因为默认就 是key/value类型
+		contentType:'application/json;charset=utf-8',
+		//数据格式是json串，商品信息
+		data:'{"cityname":"上海"}',
+		success:function(data){
+			alert(data);
+		}
+	});
 }
 
 </script>
@@ -162,5 +175,6 @@ function job(){
 <input type="button" onclick="food()" value="插入美食"/>
 <input type="button" onclick="view()" value="插入风景"/>
 <input type="button" onclick="job()" value="插入职位信息"/>
+<input type="button" onclick="houses()" value="插入房租信息"/>
 </body>
 </html>

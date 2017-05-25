@@ -18,7 +18,55 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{joblist.companynature},#{joblist.industry},#{joblist.address},NOW())
 		</foreach>
 	</insert>
-	<!-- <select id="findJoburl" parameterType="java.lang.String" resultType="java.lang.Integer">
-		SELECT COUNT(*) FROM job WHERE joburl='${value}'
-	</select> -->
+	
+	<!-- 统计公司不同公司类型的总数 -->
+	<select id="findCompanynatureTotal" parameterType="java.lang.String" resultType="com.cityview.po.Job">
+		SELECT COUNT(companynature) AS total,companynature 
+		FROM (SELECT company,companynature FROM job WHERE cityname='${value}' AND company!='' GROUP BY company)AS temp GROUP BY temp.companynature
+	</select>
+	
+	<!-- 统计不同规模的公司的数目 -->
+	<select id="findScaleTotal" parameterType="java.lang.String" resultType="com.cityview.po.Job">
+		SELECT count(scale) AS total,scale 
+		FROM (SELECT company,scale FROM job WHERE cityname='${value}' AND company!='' GROUP BY company)AS temp GROUP BY temp.scale
+	</select>
+	
+	<!-- 统计不同行业公司的数量 -->
+	<select id="findindustry" parameterType="java.lang.String" resultType="com.cityview.po.Job">
+		SELECT count(industry)AS total,industry 
+		FROM (SELECT industry FROM job WHERE cityname='${value}' AND company!='' GROUP BY company)AS temp GROUP BY temp.industry
+	</select>
+	
+	
+	<!-- 统计工作经验与工资的关系 -->
+	<select id="findpriceExp" parameterType="java.lang.String" resultType="com.cityview.po.Job">
+		SELECT AVG(minprice)AS minprice,AVG(maxprice)AS maxprice,exp 
+		FROM job 
+		WHERE cityname='${value}' AND exp!='' AND minprice!='' GROUP BY exp ORDER BY exp
+	</select>
+	
+	<!-- 统计学历与工资的关系 -->
+	<select id="findpriceEducation" parameterType="java.lang.String" resultType="com.cityview.po.Job">
+		SELECT AVG(minprice)AS minprice,AVG(maxprice)AS maxprice,education 
+		FROM job 
+		WHERE cityname='${value}' AND education!='' AND minprice!=''  GROUP BY education ORDER BY education
+	</select>
+	
+	<!-- 统计工作经验和用人需求的关系 -->
+	<select id="finddemandExp" parameterType="java.lang.String" resultType="com.cityview.po.Job">
+		SELECT SUM(substring_index(`demand`,'人',1))AS total,exp 
+		FROM job 
+		WHERE cityname='${value}' AND exp!='' GROUP BY exp ORDER BY exp
+	</select>
+	
+	<!-- 学历与用人需求的关系 -->
+	<select id="finddemandEducation" parameterType="java.lang.String" resultType="com.cityview.po.Job">
+		SELECT SUM(substring_index(`demand`,'人',1))AS total,education 
+		FROM job 
+		WHERE cityname='${value}' AND education!='' GROUP BY education ORDER BY education
+	</select>
+	
+	
+	
+	
 </mapper>

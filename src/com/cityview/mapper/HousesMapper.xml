@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cityview.mapper.HousesMapper">
+	<insert id="insertHouseslist" parameterType="com.cityview.po.Houses" >
+		<selectKey resultType ="java.lang.Integer" keyProperty= "id" order= "AFTER">
+			SELECT LAST_INSERT_ID()
+        </selectKey>
+		INSERT INTO houses(cityname,houseurl,title,way,type,face,size,floor,renovation,address,agency,price,time,create_time)
+		VALUES
+		<foreach collection="list" item="houseslist" index="index" separator=",">
+			(#{houseslist.cityname},#{houseslist.houseurl},#{houseslist.title},
+			#{houseslist.way},#{houseslist.type},#{houseslist.face},#{houseslist.size},
+			#{houseslist.floor},#{houseslist.renovation},#{houseslist.address},
+			#{houseslist.agency},#{houseslist.price},#{houseslist.time},NOW())
+		</foreach>
+	</insert>
+	
+	<!-- 统计房子的朝向和价格的关系 -->
+	<select id="findFaceprice" parameterType="java.lang.String" resultType="com.cityview.po.Houses">
+		SELECT sum(price/size)/count(face) AS price,face 
+		FROM houses 
+		WHERE cityname='${value}' AND face!='' GROUP BY face ORDER BY price DESC
+	</select>
+	
+	<!-- 统计房子的装修风格和价格的关系 -->
+	<select id="findFaceRenovation" parameterType="java.lang.String" resultType="com.cityview.po.Houses">
+		SELECT sum(price/size)/count(renovation)AS price,renovation 
+		FROM houses 
+		WHERE cityname='${value}' AND renovation!='' GROUP BY renovation ORDER BY price DESC
+	</select>
+	
+	<!-- 统计城市的房屋中介公司 -->
+	<select id="findAgencytotal" parameterType="java.lang.String" resultType="com.cityview.po.Houses">
+		SELECT count(agency) total,agency 
+		FROM houses 
+		WHERE cityname='${value}' AND agency!='' GROUP BY agency ORDER BY total DESC
+	</select>
+	
+	<!-- 统计区域哪块租房最贵 -->
+	<select id="findAreaPrice" parameterType="java.lang.String" resultType="com.cityview.po.Houses">
+		SELECT sum(price/size)/count(REPLACE(substring_index(`address`,'-',1),'租房','')) as price,REPLACE(substring_index(`address`,'-',1),'租房','') AS area 
+		FROM houses 
+		WHERE cityname='${value}' GROUP BY area HAVING area!='' ORDER BY price
+	</select>
+	
+	<!-- 统计不同户型的价格关系 -->
+	<select id="findTypePrice" parameterType="java.lang.String" resultType="com.cityview.po.Houses">
+		SELECT SUM(price/size)/count(type) AS price,type 
+		FROM houses 
+		WHERE cityname='${value}' AND type!='' GROUP BY type
+	</select>
+	
+</mapper>

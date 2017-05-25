@@ -31,5 +31,7 @@
 		<!-- 职位信息Service -->
 		<bean id="jobService" class="com.cityview.service.impl.JobServiceImpl"/>
 		
+		<!-- 租房信息Service -->
+		<bean id="housesService" class="com.cityview.service.impl.HousesServiceImpl"/>
 		
 </beans>
