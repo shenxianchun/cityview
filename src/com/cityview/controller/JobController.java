@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,10 @@ import com.cityview.po.Houses;
 import com.cityview.po.Job;
 import com.cityview.service.JobService;
 import com.cityview.spider.JobSpider;
+import com.cityview.tool.GetIp;
+import com.cityview.tool.IpgetCityname;
+
+import cn.com.webxml.IpTest;
 
 /**
 * <p>Title: JobController.java<／p>
@@ -31,6 +37,26 @@ import com.cityview.spider.JobSpider;
 public class JobController {
 	@Autowired
 	private JobService jobService;
+	
+	
+	/**
+	 * 得到ip地址对应的城市
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/IpgetCityname")
+	public @ResponseBody String IpgetCityname(HttpServletRequest request){
+		String ip=new GetIp().getIpAddr(request);
+		System.out.println("访问者的ip地址为"+ip);
+		
+		String cityname=IpgetCityname.GetAddressByIp("106.3.240.209");
+		
+		System.out.println("当前访问者的地址为:"+cityname);
+		
+		cityname="北京";
+		
+		return cityname;
+	}
 	
 	/**
 	 * 批量插入招聘职位信息
@@ -84,7 +110,7 @@ public class JobController {
 	}
 	
 	/**
-	 *	统计公司不同公司类型的总数
+	 *	统计不同规模的公司的数目
 	 * @param job
 	 * @return
 	 * @throws Exception

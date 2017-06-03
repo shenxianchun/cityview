@@ -11,7 +11,8 @@ img{border:0;}
 ul,li{list-style-type:none;}
 a {color:#00007F;text-decoration:none;}
 a:hover {color:#bd0a01;text-decoration:underline;}
-.treebox{ width: 200px; height:100%;background-color:#1a6cb9;margin-top:-55px; }
+.treebox{ width: 200px; height:100%;background-color:#1a6cb9;position:fixed;left:0px;margin-top:-55px;}
+.treebox>ul{}
 .menu{ overflow: hidden; border-color: #ddd; border-style: solid ; border-width: 0 1px 1px ; }
 /*第一层*/
 .menu li.level1>a{ display:block;height: 45px;line-height: 45px;color: #fff;padding-left: 50px;border-bottom: 1px solid #000; font-size: 16px;position: relative;transition:all .5s ease 0s;}

@@ -24,8 +24,8 @@ public class pingying{
             defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);   
             defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);   
             for (int i = 0; i < arr.length; i++) {   
-                    if (arr[i] > 128) {   
-                            try {   
+                    if (arr[i] > 128) {
+                            try {
                                     String[] temp = PinyinHelper.toHanyuPinyinStringArray(arr[i], defaultFormat);   
                                     if (temp != null) {   
                                             pybf.append(temp[0].charAt(0));   
@@ -52,7 +52,7 @@ public class pingying{
             defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);   
             defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);   
             for (int i = 0; i < arr.length; i++) {   
-                    if (arr[i] > 128) {   
+                    if (arr[i] > 128) {
                             try {   
                                     pybf.append(PinyinHelper.toHanyuPinyinStringArray(arr[i], defaultFormat)[0]);   
                             } catch (BadHanyuPinyinOutputFormatCombination e) {   

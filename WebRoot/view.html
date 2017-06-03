@@ -76,53 +76,46 @@
 	<div class="treebox">
 	<ul class="menu">
 		<li class="level1">
+			<a href="#none" style="border-bottom:none;"></a>
+		</li>
+		<li class="level1">
 			<a href="#none"></a>
 		</li>
 		<li class="level1">
-			<a href="#none"><em class="ico ico1"></em>导航一<i class="down"></i></a>
+			<a href="#none"><em class="ico ico1"></em>招聘信息<i class="down"></i></a>
 			<ul class="level2">
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
+				<li><a href="javascript:;">公司相关统计</a></li>
+				<li><a href="javascript:;">需求关系</a></li>
+				<li><a href="javascript:;">工资关系</a></li>
 			</ul>
 		</li>
 		<li class="level1">
-			<a href="#none"><em class="ico ico2"></em>导航一<i></i></a>
+			<a href="#none"><em class="ico ico2"></em>房租信息<i></i></a>
 			<ul class="level2">
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
+				<li><a href="javascript:;">中介统计</a></li>
+				<li><a href="javascript:;">租金关系</a></li>
+				<li><a href="javascript:;">区域统计</a></li>
 			</ul>
 		</li>
 		<li class="level1">
-			<a href="#none"><em class="ico ico3"></em>导航一<i></i></a>
+			<a href="#none"><em class="ico ico3"></em>城市气候<i></i></a>
 			<ul class="level2">
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
+				<li><a href="javascript:;">历史天气统计</a></li>
+				<li><a href="javascript:;">历史风向统计</a></li>
+				<li><a href="javascript:;">风力统计</a></li>
+				<li><a href="javascript:;">历史天气详情</a></li>
 			</ul>
 		</li>
 		<li class="level1">
-			<a href="#none"><em class="ico ico4"></em>导航一<i></i></a>
+			<a href="#none"><em class="ico ico4"></em>空气质量指数<i></i></a>
 			<ul class="level2">
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
+				<li><a href="javascript:;">表格月统计数据</a></li>
+				<li><a href="javascript:;">图表月统计数据</a></li>
+				<li><a href="javascript:;">月变化趋势</a></li>
+				<li><a href="javascript:;">等级变化趋势</a></li>
 			</ul>
 		</li>
-					<li class="level1">
-			<a href="#none"><em class="ico ico5"></em>导航一<i></i></a>
-			<ul class="level2">
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-			</ul>
-		</li>
+		
 	</ul>
 </div>
 <!--二级导航栏end-->
@@ -148,22 +141,6 @@
 							<i class="dropdown icon"></i><!-- 向下的箭头 -->
 							<div class="menu" id="provincelist">
 								<!--市区列表  -->
-							</div>
-						</div>
-					</td>
-					<td width="150px">选择查看的信息：</td>
-					<td width="150px">
-						<div class="ui dropdown">
-							<input type="hidden" id="information" value=""/>
-							<div class="default text">选择查看的信息</div>
-							<i class="dropdown icon"></i><!-- 向下的箭头 -->
-							<div class="menu">
-								<div class="item" data-value="招聘信息">招聘信息</div>
-								<div class="item" data-value="房租信息">房租信息</div>
-								<div class="item" data-value="城市气候">城市气候</div>
-								<div class="item" data-value="AQI">AQI</div>
-								<div class="item" data-value="旅游景点">旅游景点</div>
-								<div class="item" data-value="美食">美食</div>
 							</div>
 						</div>
 					</td>
@@ -196,6 +173,9 @@
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/semantic.min.js"></script>
 <script src="js/easing.js"></script>
+<!-- 查询省对应的市区 -->
+<script type="text/javascript" src="js/city.js"></script>
+
 <script type="text/javascript" src="js/view.js"></script>
 <script type="text/javascript">
 $(function(){

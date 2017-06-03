@@ -14,7 +14,6 @@ import com.cityview.tool.GetIp;
 
 import cn.com.webxml.IpTest;
 
-
 /**
 * <p>Title: AqiController.java<／p>
 * <p>Description:测试月全量aqi <／p>

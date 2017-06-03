@@ -51,7 +51,7 @@
 					<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"></bean>
 				</list>
 			</property>
-		 </bean> 
+		 </bean>
 		<!-- ===============================配置处理器适配器     end============================================================   -->
 		
 		

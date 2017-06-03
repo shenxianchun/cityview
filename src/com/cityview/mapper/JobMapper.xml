@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 统计不同规模的公司的数目 -->
 	<select id="findScaleTotal" parameterType="java.lang.String" resultType="com.cityview.po.Job">
 		SELECT count(scale) AS total,scale 
-		FROM (SELECT company,scale FROM job WHERE cityname='${value}' AND company!='' GROUP BY company)AS temp GROUP BY temp.scale
+		FROM (SELECT company,scale FROM job WHERE cityname='${value}' AND company!='' GROUP BY company)AS temp GROUP BY temp.scale ORDER BY scale
 	</select>
 	
 	<!-- 统计不同行业公司的数量 -->

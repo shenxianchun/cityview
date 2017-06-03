@@ -65,7 +65,7 @@
 				<li><a href="javascript:;">历史天气统计</a></li>
 				<li><a href="javascript:;">历史风向统计</a></li>
 				<li><a href="javascript:;">风力统计</a></li>
-				<li><a href="javascript:;">历史天气详情</a></li>
+				<li><a href="weatherday.jsp?cityname=北京&date=2013-07">历史天气详情</a></li>
 			</ul>
 		</li>
 		<li class="level1">
@@ -77,24 +77,7 @@
 				<li><a href="javascript:;">等级变化趋势</a></li>
 			</ul>
 		</li>
-		<li class="level1">
-			<a href="#none"><em class="ico ico5"></em>旅游景点<i></i></a>
-			<ul class="level2">
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-			</ul>
-		</li>
-		<li class="level1">
-			<a href="#none"><em class="ico ico5"></em>城市美食<i></i></a>
-			<ul class="level2">
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-			</ul>
-		</li>
+		
 	</ul>
 </div>
 <!--二级导航栏end-->

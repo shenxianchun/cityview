@@ -1,7 +1,6 @@
 package com.cityview.controller;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -70,33 +69,8 @@ public class HousesController {
 		return "插入成功";
 	}
 	
-	/**
-	 * 统计房子的朝向和价格的关系
-	 * @param houses
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping("/findFacePrice")
-	public @ResponseBody List<Houses> findFacePrice(@RequestBody Houses houses)throws Exception{
-		
-		List<Houses> facelist=housesService.findFaceprice(houses.getCityname());
-		
-		return facelist;
-	}
 	
-	/**
-	 * 统计房子的装修风格和价格的关系
-	 * @param houses
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping("/findRenovationPrice")
-	public @ResponseBody List<Houses> findRenovationPrice(@RequestBody Houses houses)throws Exception{
-		
-		List<Houses> renovationlist=housesService.findFaceRenovation(houses.getCityname());
-		
-		return renovationlist;
-	}
+	
 	
 	/**
 	 * 统计城市中的房屋中介公司
@@ -110,6 +84,38 @@ public class HousesController {
 		List<Houses> agencylist=housesService.findAgencytotal(houses.getCityname());
 		
 		return agencylist;
+	}
+	
+	
+	/**
+	 * 统计房子的朝向次数和价格的关系
+	 * @param houses
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/findFacePrice")
+	public @ResponseBody List<Houses> findFacePrice(@RequestBody Houses houses)throws Exception{
+		
+		List<Houses> facelist=housesService.findFaceprice(houses.getCityname());
+		
+		return facelist;
+	}
+	
+	
+	
+	
+	/**
+	 * 统计房子的装修风格和价格的关系
+	 * @param houses
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/findRenovationPrice")
+	public @ResponseBody List<Houses> findRenovationPrice(@RequestBody Houses houses)throws Exception{
+		
+		List<Houses> renovationlist=housesService.findFaceRenovation(houses.getCityname());
+		
+		return renovationlist;
 	}
 	
 	/**
@@ -132,7 +138,7 @@ public class HousesController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/findAreaPrice")
+	@RequestMapping("/findTypePrice")
 	public @ResponseBody List<Houses> findTypePrice(@RequestBody Houses houses)throws Exception{
 		
 		List<Houses> arealist=housesService.findTypePrice(houses.getCityname());

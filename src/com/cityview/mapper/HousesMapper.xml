@@ -20,14 +20,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 统计房子的朝向和价格的关系 -->
 	<select id="findFaceprice" parameterType="java.lang.String" resultType="com.cityview.po.Houses">
-		SELECT sum(price/size)/count(face) AS price,face 
+		SELECT count(face) total,floor(sum(price/size)/count(face)) AS price,face 
 		FROM houses 
-		WHERE cityname='${value}' AND face!='' GROUP BY face ORDER BY price DESC
+		WHERE cityname='${value}' AND face!='' GROUP BY face ORDER BY total DESC
 	</select>
 	
 	<!-- 统计房子的装修风格和价格的关系 -->
 	<select id="findFaceRenovation" parameterType="java.lang.String" resultType="com.cityview.po.Houses">
-		SELECT sum(price/size)/count(renovation)AS price,renovation 
+		SELECT floor(sum(price/size)/count(renovation))AS price,renovation 
 		FROM houses 
 		WHERE cityname='${value}' AND renovation!='' GROUP BY renovation ORDER BY price DESC
 	</select>
@@ -41,14 +41,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 统计区域哪块租房最贵 -->
 	<select id="findAreaPrice" parameterType="java.lang.String" resultType="com.cityview.po.Houses">
-		SELECT sum(price/size)/count(REPLACE(substring_index(`address`,'-',1),'租房','')) as price,REPLACE(substring_index(`address`,'-',1),'租房','') AS area 
+		SELECT floor(sum(price/size)/count(REPLACE(substring_index(`address`,'-',1),'租房',''))) as price,REPLACE(substring_index(`address`,'-',1),'租房','') AS area 
 		FROM houses 
 		WHERE cityname='${value}' GROUP BY area HAVING area!='' ORDER BY price
 	</select>
 	
 	<!-- 统计不同户型的价格关系 -->
 	<select id="findTypePrice" parameterType="java.lang.String" resultType="com.cityview.po.Houses">
-		SELECT SUM(price/size)/count(type) AS price,type 
+		SELECT floor(SUM(price/size)/count(type)) AS price,type 
 		FROM houses 
 		WHERE cityname='${value}' AND type!='' GROUP BY type
 	</select>
