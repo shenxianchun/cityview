@@ -3,6 +3,8 @@ package com.cityview.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,6 +55,22 @@ public class WeatherController {
 		return "成功";
 	}
 	
+	
+	
+	@RequestMapping("/querymonth")
+	public @ResponseBody List<String> querymonth(@RequestBody Monthweather monthweather)throws Exception{
+		String cityname=monthweather.getCityname();
+		
+		System.out.println(cityname+"--------历史天气状况月份-----------");
+		List<String> Monthlist=weatherService.querymonth(cityname);
+		
+		return Monthlist;
+	}
+	
+	
+	
+	
+	
 	/**
 	 * 天气统计包括风向风力
 	 * @param monthweather
@@ -60,8 +78,9 @@ public class WeatherController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/queryCountWeather")
-	public @ResponseBody List<List<Monthweather>> queryCountWeather(@RequestBody Monthweather monthweather)throws Exception{
+	public @ResponseBody List<List<Monthweather>> queryCountWeather(@RequestBody Monthweather monthweather,HttpSession session)throws Exception{
 		String cityname=monthweather.getCityname();
+		session.setAttribute("searchcityname", cityname);
 		System.out.println(cityname+"--------历史天气状况统计-----------");
 		List<List<Monthweather>> weatherList=new ArrayList<List<Monthweather>>();
 		List<Monthweather> weathers=weatherService.findCountweather(cityname);

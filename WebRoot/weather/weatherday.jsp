@@ -7,106 +7,47 @@
 	<title>历史天气详情统计</title>
 	<link rel="stylesheet" href="../css/semantic.min.css" />
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
-	<style type="text/css">
-	/*============修饰图标*/
-	 .ico{ width: 20px; height: 20px; display:block;   position: absolute; left: 20px; top: 10px; background-repeat: no-repeat; background-image: url(../images/ico1.png); }
-	 /*============小箭头*/
-	 .level1 i{ width: 20px; height: 10px; background-image:url(../images/arrow.png); background-repeat: no-repeat; display: block; position: absolute; right: 20px; top: 20px; }
-	</style>
+	
 </head>
 <body>
-	<div class="login"></div>
+<div id="main">
+	<div class="login" style="color:#fff;">当前所在的城市：<span id="cityname"><%=session.getAttribute("cityname") %></span></div>
+	<!--导航栏start-->
 	<div class="line">
-		<div class="top">宜居城市可视化平台</div>
-		<!--导航栏start-->
-		<div class="t_navigation">
-			<div id="topmenu" class="ui inverted  menu">
-				<a href="" class="item">首页</a>
-				<a href="" class="item">招聘信息</a>
-				<a href="" class="item">房租信息</a>
-				<a href="" class="item">城市气候</a>
-				<a href="/cityview/monthaqi.html" class="item">空气质量指数</a>
-				<a href="" class="item">城市旅游景点</a>
-				<a href="" class="item">城市美食</a>
-			</div>
+		<div class="top">宜居城市信息可视化平台</div>
+		<div id="topmenu" class="ui inverted red menu">
+			<a href="../index.jsp" class="item">首页</a>
+			<a href="../job/job.jsp" class="item">招聘信息</a>
+			<a href="../house/house.jsp" class="item">房租信息</a>
+			<a href="../weather/weather.jsp" class="item">城市气候</a>
+			<a href="../monthaqi.jsp" class="item">空气质量指数</a>
+			<a href="../view.jsp" class="item">城市旅游景点</a>
+			<a href="../food.jsp" class="item">城市美食</a>
+			<a href="" class="item right">数据更新</a>
 		</div>
-		<!--导航栏end-->
 	</div>
-	<!--二级导航栏start-->
-	<div class="treebox">
-	<ul class="menu">
-		<li class="level1">
-			<a href="#none" style="border-bottom:none;"></a>
-		</li>
-		<li class="level1">
-			<a href="#none"></a>
-		</li>
-		<li class="level1">
-			<a href="#none"><em class="ico ico1"></em>招聘信息<i class="down"></i></a>
-			<ul class="level2">
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-			</ul>
-		</li>
-		<li class="level1">
-			<a href="#none"><em class="ico ico2"></em>房租信息<i></i></a>
-			<ul class="level2">
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-				<li><a href="javascript:;">导航选项</a></li>
-			</ul>
-		</li>
-		<li class="level1">
-			<a href="#none"><em class="ico ico3"></em>城市气候<i></i></a>
-			<ul class="level2">
-				<li><a href="javascript:;">历史天气统计</a></li>
-				<li><a href="javascript:;">历史风向统计</a></li>
-				<li><a href="javascript:;">风力统计</a></li>
-				<li><a href="weatherday.jsp?cityname=北京&date=2013-07">历史天气详情</a></li>
-			</ul>
-		</li>
-		<li class="level1">
-			<a href="#none"><em class="ico ico4"></em>空气质量指数<i></i></a>
-			<ul class="level2">
-				<li><a href="javascript:;">表格月统计数据</a></li>
-				<li><a href="javascript:;">图表月统计数据</a></li>
-				<li><a href="javascript:;">月变化趋势</a></li>
-				<li><a href="javascript:;">等级变化趋势</a></li>
-			</ul>
-		</li>
-		
-	</ul>
-</div>
-<!--二级导航栏end-->
-<div class="search">
-			<table class="ui table">
-				<tr align="center">
-					<td width="200px" style="color:red;text-align:left;">当前的位置>>历史天气详情</td>
-					<td style="font-size:24px;color:rgba(18, 222, 17, 0.67); width:200px;">历史天气详情数据</td>
-					<td width="240px">
-						<div class="ui dropdown">
-							<input type="hidden" id="information" value=""/>
-							<div class="default text">选择查看的日期</div>
-							<i class="dropdown icon"></i><!-- 向下的箭头 -->
-							<div class="menu">
-								<div class="item"><a href='weatherday.jsp?cityname=<%=request.getParameter("cityname") %>&date=2012-07'>2012-07</a></div>
-								<div class="item"><a href='weatherday.jsp?cityname=<%=request.getParameter("cityname") %>&date=2013-07'>2013-07</a></div>
-								<div class="item"><a href='weatherday.jsp?cityname=<%=request.getParameter("cityname") %>&date=2013-02'>2013-02</a></div>
-								<div class="item"><a href='weatherday.jsp?cityname=<%=request.getParameter("cityname") %>&date=2014-07'>2014-07</a></div>
-								<div class="item"><a href='weatherday.jsp?cityname=<%=request.getParameter("cityname") %>&date=2015-07'>2015-07</a></div>
-								<div class="item"><a href='weatherday.jsp?cityname=<%=request.getParameter("cityname") %>&date=2016-07'>2016-07</a></div>
-							</div>
+	<!--导航栏end-->
+	
+	<div class="search">
+		<table class="ui table" style="background:rgba(228, 241, 221, 0.26);">
+			<tr align="center">
+				<td width="200px" style="color:red;text-align:left;">历史天气详情</td>
+				<td style="font-size:24px;color:rgba(18, 222, 17, 0.67); width:200px;">历史天气详情数据</td>
+				<td width="240px">
+					<div class="ui dropdown">
+						<input type="hidden" id="information" value=""/>
+						<div class="default text">选择查看的日期</div>
+						<i class="dropdown icon"></i><!-- 向下的箭头 -->
+						<div class="menu" id="month">
+							<!-- 天气月份 -->
 						</div>
-					</td>
-				</tr>
-			</table>
-		</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
 <!--内容栏start-->
 	<div class="content">
-		<img src="../images/logo.png">
 		<div class="online">
 			<!--AQI月统计start-->
 			<div>
@@ -166,6 +107,46 @@
 	</div>
 <!--内容栏end-->	
 
+
+<!-- 底部开始 -->
+	<div class="bottom">
+      <ul class="bottom-left">
+        <li>
+          <ul>
+            <li class="titles">关于可视化</li>
+            <li><a href="#">联系我们</a></li>
+            <li><a href="#">加入我们</a></li>
+            <li><a href="#">友情链接</a></li>
+          </ul>
+        </li>
+        <li>
+          <ul>
+            <li class="titles">帮助中心</li>
+            <li><a href="#">意见反馈</a></li>
+            <li><a href="#">投诉中心</a></li>
+            <li><a href="#">服务说明</a></li>
+          </ul>
+        </li>
+        <li>
+          <ul>
+            <li class="titles">平台特色</li>
+            <li><a href="#">安全可靠</a></li>
+            <li><a href="#">数据真实</a></li>
+            <li><a href="#">数据统计</a></li>
+          </ul>
+        </li>
+        <li>
+          <ul>
+            <li class="titles">关注我们</li>
+            <li><a href="#">官方微信</a></li>
+            <li><a href="#">新浪微博</a></li>
+            <li><a href="#">腾讯微博</a></li>
+          </ul>
+        </li>
+      </ul>
+      <p>Copyright ©2017-2018 宜居城市可视化平台网版权所有 - <a href="http://www.miitbeian.gov.cn/" target="blank_">辽ICP备16019394号</a></p>
+    </div><!-- 底部结束 -->
+</div>
 <script type="text/javascript" src="../js/echarts-all.js"></script>
 <script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="../js/semantic.min.js"></script>

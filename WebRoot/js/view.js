@@ -1,8 +1,9 @@
 $(function(){
+	var cityname=$("#cityname").text();
 	$.ajax({
 		type:'post',
 		url:'view/findViewAll.action',
-		data:'{"cityname":"北京"}',
+		data:'{"cityname":"'+cityname+'"}',
 		contentType:'application/json;charset=utf-8',
 		//数据格式是json串
 		success:function(reponse){//返回json结果

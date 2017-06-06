@@ -93,4 +93,11 @@ public interface WeatherMapper {
 	 */
 	public List<Monthweather> findWeatherMonthAll(Monthweather monthweather)throws Exception;
 	
+	/**
+	 * 查找月份
+	 * @param cityname
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> querymonth(String cityname)throws Exception;
 }

@@ -65,9 +65,9 @@ public class AqimonthController {
 		 * @throws Exception
 		 */
 		@RequestMapping("/insert")
-		public @ResponseBody String insertAqimonth() throws Exception{
+		public @ResponseBody String insertAqimonth(@RequestBody Aqiday aqiday) throws Exception{
 			AOI aqi=new AOI();
-			List<Aqimonth> aqiList=aqi.insertAqimonth("杭州");
+			List<Aqimonth> aqiList=aqi.insertAqimonth(aqiday.getCityname());
 			List<Aqimonth> queryaqiList=new ArrayList<Aqimonth>();//新的list存入数据库
 			for(Aqimonth list:aqiList){
 				if(aqimonthService.findAqi(list.getAqiurl())!=1){

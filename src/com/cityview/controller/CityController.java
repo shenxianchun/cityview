@@ -2,6 +2,9 @@ package com.cityview.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cityview.po.City;
 import com.cityview.service.CityService;
+import com.cityview.tool.GetIp;
+import com.cityview.tool.IpgetCityname;
 
 /**
 * <p>Title: CityController.java<／p>
@@ -26,6 +31,28 @@ public class CityController {
 	//注入CityService
 	@Autowired
 	private CityService cityService;
+	
+	
+	/**
+	 * 得到ip地址对应的城市
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/IpgetCityname")
+	public @ResponseBody String IpgetCityname(HttpServletRequest request,HttpSession session){
+		String ip=new GetIp().getIpAddr(request);
+		System.out.println("访问者的ip地址为"+ip);
+		
+		String cityname=IpgetCityname.GetAddressByIp("106.3.240.209");
+		
+		System.out.println("当前访问者的地址为:"+cityname);
+		
+		cityname="北京";
+		
+		session.setAttribute("cityname", cityname);
+		return cityname;
+	}
+	
 	
 	@RequestMapping("/city")
 	public @ResponseBody List<City> querycitys() throws Exception{

@@ -19,7 +19,6 @@ $(function(){
 				$("#aqimonth-table").append("<tr>"+
 						"<td>"+response[i].day+"</td>"+
 						"<td>"+response[i].aqi+"</td>"+
-						"<td>"+response[i].minaqi+"~"+response[i].maxaqi+"</td>" +
 						"<td><div style='width:65px;height:20px;color:black;'>"+response[i].grade+"</div></td>" +
 						"<td>"+response[i].pm+"</td>" +
 						"<td>"+response[i].pmo+"</td>" +
@@ -29,8 +28,6 @@ $(function(){
 						"<td>"+response[i].o+"</td>" +
 						"</tr>");
 				day.push(response[i].day);
-				datamin.push(response[i].minaqi);
-				datamax.push(response[i].maxaqi);
 				dataver.push(response[i].aqi);
 				pm.push(response[i].pm);
 				pmo.push(response[i].pmo);
@@ -42,7 +39,7 @@ $(function(){
 				        trigger: 'axis'
 				    },
 				    legend: {
-				        data:['最大值','平均值','最小值']
+				        data:['AQI']
 				    },
 				    toolbox: {
 				        show : true,
@@ -95,25 +92,11 @@ $(function(){
 				    
 				    series : [
 				        {
-				            name:'最大值',
-				            type:'line',
-				            smooth:true,
-				            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-				            data:datamax
-				        },
-				        {
-				            name:'平均值',
+				            name:'AQI',
 				            type:'line',
 				            smooth:true,
 				            itemStyle: {normal: {areaStyle: {type: 'default'}}},
 				            data:dataver
-				        },
-				        {
-				            name:'最小值',
-				            type:'line',
-				            smooth:true,
-				            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-				            data:datamin
 				        }
 				    ]
 				};

@@ -1,15 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>空气质量数日统计</title>
+	<meta charset="UTF-8">
+	<title>历史天气统计</title>
 	<link rel="stylesheet" href="../css/semantic.min.css" />
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
-	
+	<style type="text/css">
+	 #piechart{
+		width:800px;
+		height:300px;
+		/*background:#00b5ad;*/
+		margin:20px 0px 0px 80px;
+	}
+	 #pie{
+		width:800px;
+		height:300px;
+		/*background:#00b5ad;*/
+		margin:20px 0px 90px 80px;
+	}
+	.bottom{margin-top:335px;}
+	#bottommenu{background-color: #6d6363;}
+	</style>
 </head>
 <body>
 <div id="main">
@@ -29,89 +42,85 @@
 		</div>
 	</div>
 	<!--导航栏end-->
-		
+	
+	<!-- 搜索start -->
 	<div class="search">
-		<table class="ui table">
+		<table class="ui table" style="background:rgba(228, 241, 221, 0.26);">
 			<tr align="center">
-				<td width="200px" style="color:red;text-align:left;">空气质量指数</td>
-				<td style="font-size:24px;color:rgba(18, 222, 17, 0.67); width:200px;">空气质量指数日历史数据</td>
-				<td width="240px"></td>
+				<td width="250px" style="color:red;text-align:left;">历史天气情况查看</td>
+				<td width="90px">选择城市:</td>
+				<td width="100px">
+					  <div class="ui dropdown">
+						<input type="hidden" id="city" value=""/>
+						<div class="default text">选择城市</div>
+						<i class="dropdown icon"></i><!-- 向下的箭头 -->
+						<div class="menu" id="citylist">
+							<!--省份列表  -->
+						</div>
+					</div>
+				</td>
+				<td width="80px">选择市区:</td>
+				<td width="120px">
+					<div class="ui dropdown">
+						<input type="hidden" id="province" value=""/>
+						<div class="default text">先选择市区</div>
+						<i class="dropdown icon"></i><!-- 向下的箭头 -->
+						<div class="menu" id="provincelist">
+							<!--市区列表  -->
+						</div>
+					</div>
+				</td>
+				<td align="right">
+					<button class="ui primary button" id="search">搜索</button>
+				</td>
+				<td align="right">
+				<%if(session.getAttribute("searchcityname")!=null){%>
+					<a href="weatherday.jsp?cityname=<%=session.getAttribute("searchcityname") %>&date=2013-07" id="ahref"> 
+						<button class="ui primary button">查看历史详情</button>
+					</a>
+				<%} else{%>
+					<a href="weatherday.jsp?cityname=<%=session.getAttribute("cityname") %>&date=2013-07" id="ahref">
+						<button class="ui primary button">查看历史详情</button>
+					</a>
+				<%}%>
+					
+				</td>
 			</tr>
 		</table>
 	</div>
+
 <!--内容栏start-->
 	<div class="content">
 		<div class="online">
-			<!--AQI月统计start-->
+			<!--历史天气统计start-->
 			<div>
-				<div class="title">
-					<span class="cityname">
-						<span id="month"><%=request.getParameter("month") %></span>
-						<span id="cityname_city"><%=request.getParameter("cityname") %></span>
-					</span>空气质量指数日历史数据
+				<div class="title"><span class="cityname">北京</span>历史天气统计</div>
+				<div id="weathercount" class="chr" style="background:#333;width:800px;height:300px;margin:0 auto;">
 					
 				</div>
-				<div class="monthaqi">
-					<table width="900px" class="ui selectable celled table" style="text-align: center;">
-						<thead >
-							<tr>
-								<th width="70px" height="50px" style="background-color:#38C19B;">日期</th>
-								<th width="70px" style="background-color:#38C19B;">AQI</th>
-								<th width="70px" style="background-color:#38C19B;">质量等级</th>
-								<th width="70px" style="background-color:#38C19B;">PM2.5</th>
-								<th width="70px" style="background-color:#38C19B;">PM10</th>
-								<th width="70px" style="background-color:#38C19B;">SO2</th>
-								<th width="70px" style="background-color:#38C19B;">CO</th>
-								<th width="70px" style="background-color:#38C19B;">NO2</th>
-								<th width="70px" style="background-color:#38C19B;">O3</th>
-							</tr>
-						</thead>
-						<tbody id="aqimonth-table">
-							<!-- 空气质量指数日全量指数统计列表 -->
-							
-						</tbody>
-					</table>
-				</div>
 			</div>
-			<!--AQI月统计start-->
+			<!--历史天气统计end-->
 			
-			<!--AQT月变化趋势start-->
+			<!--历史风向统计start-->
 			 <div id="monthchart">
-			 	<div class="title2">
-			 		<span class="cityname">
-						<span><%=request.getParameter("cityname") %></span>
-						<span><%=request.getParameter("month") %></span>
-			 		</span>月空气质量指数（AQI）变化趋势</div>
+			 	<div class="title2" style="margin-left:470px;"><span class="cityname"></span>历史风向统计</div>
 			 	<div id="container" class="chr"></div>
 			 </div>
-			<!--AQT月变化趋势end-->
-				
+			<!--历史风向统计end-->
+			
+			<!--历史风力统计start-->
 			<div class="count">
-				<div class="title3">
-					<span class="cityname">
-						<span><%=request.getParameter("cityname") %></span>
-						<span><%=request.getParameter("month") %></span>
-					</span>月pm2.5,pm10,so2变化趋势</div>
+				<div class="title3" style="margin-left:470px;"><span class="cityname"></span>历史风力统计</div>
 				<div id="aqimonthcount" class="chr"></div>
 			</div>
-			<!-- 饼图统计start -->
-			<div class="countday">
-				<!--AQI月统计数据start-->
-				<div id="monthcount" class="chr"></div> 
-				<!--AQI月统计数据end-->
-				
-				<!--AQI日统计数据start-->
-				<div id="daycount" class="chr"></div> 
-				<!--AQI日统计数据end-->
-			</div>
-			<!-- 饼图统计end -->
+			<!--历史风力统计start-->
+			
 		</div>
 	</div>
-<!--内容栏end-->	
-
+<!--内容栏end-->
 
 <!-- 底部开始 -->
-	<div class="bottom">
+	<div class="bottom" style="margin-top:0px;">
       <ul class="bottom-left">
         <li>
           <ul>
@@ -148,17 +157,23 @@
       </ul>
       <p>Copyright ©2017-2018 宜居城市可视化平台网版权所有 - <a href="http://www.miitbeian.gov.cn/" target="blank_">辽ICP备16019394号</a></p>
     </div><!-- 底部结束 -->
-
+    
 </div>
-
 <script type="text/javascript" src="../js/echarts-all.js"></script>
 <script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="../js/semantic.min.js"></script>
-<script type="text/javascript" src="js/aqiday.js"></script>
+
+<script type="text/javascript" src="weathercount.js"></script>
+
+<script type="text/javascript" src="searchWeacher.js"></script>
+
+
+<!-- 查询省对应的市区 -->
+<script type="text/javascript" src="city.js"></script>
+
 
 <script type="text/javascript">
 $(function(){
-	$(".ui.dropdown").dropdown();//下拉框生效
 	$(".treebox .level1>a").click(function(){
 		$(this).addClass('current')   //给当前元素添加"current"样式
 		.find('i').addClass('down')   //小箭头向下样式
@@ -166,9 +181,11 @@ $(function(){
 		.parent().siblings().children('a').removeClass('current')//父元素的兄弟元素的子元素去除"current"样式
 		.find('i').removeClass('down').parent().next().slideUp('slow','easeOutQuad');//隐藏
 		 return false; //阻止默认时间
-	}); 
+	});
 })
+$(document).ready(function(){
+	$(".ui.dropdown").dropdown();
+});
 </script>
 </body>
-
 </html>

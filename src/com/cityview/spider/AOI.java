@@ -5,17 +5,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cityview.po.Aqiday;
 import com.cityview.po.Aqimonth;
-import com.cityview.service.AqimonthService;
-import com.mysql.jdbc.MiniAdmin;
 
 /**
 * <p>Title: AOI.java<／p>
@@ -28,18 +25,32 @@ import com.mysql.jdbc.MiniAdmin;
 public class AOI {
 	private static final boolean Aqimonth = false;
 	public static void main(String[] args) throws Exception {
-		List<Aqimonth> list=new AOI().insertAqimonth("深圳");
+		
+		List<Aqimonth> list=new AOI().insertAqimonth("北京");
 		for(Aqimonth li:list){
 			System.out.println(new AOI().insertAqiday(li.getCityname(),li.getMonth()));
+			
 		}
+		/*new AOI().insertAqiday("北京","2013-12");*/
 		
 	}
 	public List<Aqiday> insertAqiday(String cityname,String month) {
-		//String url="https://www.aqistudy.cn/historydata/monthdata.php?city=北京";
+		//String aqiurl="https://www.aqistudy.cn/historydata/daydata.php?city=北京&month=2013-12";
 		String aqiurl="https://www.aqistudy.cn/historydata/daydata.php?city="+cityname+"&month="+month;
 		List<Aqiday> aqidayList=new ArrayList<Aqiday>();
 		try {
-			Document doc=Jsoup.parse(new URL(aqiurl), 4000);
+			
+			Connection con = Jsoup.connect(aqiurl);
+			con.header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");// --指浏览器能接收的Content-type
+			con.header("Accept-Encoding", "gzip, deflate");//  --接收编码
+			con.header("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");//  ---接收语言
+			con.header("Connection", "keep-alive");//是否须要持久连接
+			con.header("Host", aqiurl);// 主机和port，在互联网上一般指域名
+			con.header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:26.0) Gecko/20100101 Firefox/26.0");// 本机的相关系信息。包含浏览器类型、操作系统信息等，非常多站点能够显示出你所使用的浏览器和操作系统版本号，就是由于能够从这里获取到这些信息。
+			Document doc=con.get();//---请求方式
+			
+			
+			
 			Elements el=doc.select("tbody").get(0).select("tr");
 			for(int i=1;i<el.size();i++){
 				Elements tds=el.get(i).select("td");
@@ -54,8 +65,8 @@ public class AOI {
 					}else if(j==1){
 						aqidaybean.setAqi(content);
 						System.out.print("AQI："+td.text()+"\t");
-					}else if(j==2){
-						//System.out.print("范围："+td.text()+"\t");
+					}/*else if(j==2){
+						System.out.print("范围："+td.text()+"\t");
 						String rangeaqi=td.text();
 						int index=rangeaqi.indexOf("~");
 						String min=rangeaqi.substring(0, index);
@@ -63,25 +74,25 @@ public class AOI {
 						aqidaybean.setMinaqi(min);
 						aqidaybean.setMaxaqi(max);
 						System.out.print("最小值："+min+"最大值："+max+"\t");
-					}else if(j==3){
+					}*/else if(j==2){
 						aqidaybean.setGrade(content);
 						System.out.print("质量等级："+td.text()+"\t");
-					}else if(j==4){
+					}else if(j==3){
 						aqidaybean.setPm(content);
 						System.out.print("pm2.5："+td.text()+"\t");
-					}else if(j==5){
+					}else if(j==4){
 						aqidaybean.setPmo(content);
 						System.out.print("pm10："+td.text()+"\t");
-					}else if(j==6){
+					}else if(j==5){
 						aqidaybean.setSo(content);
 						System.out.print("so2："+td.text()+"\t");
-					}else if(j==7){
+					}else if(j==6){
 						aqidaybean.setCo(content);
 						System.out.print("co："+td.text()+"\t");
-					}else if(j==8){
+					}else if(j==7){
 						aqidaybean.setNo(content);
 						System.out.print("no2："+td.text()+"\t");
-					}else if(j==9){
+					}else if(j==8){
 						aqidaybean.setO(content);
 						System.out.print("o3："+td.text()+"\t");
 					}else{

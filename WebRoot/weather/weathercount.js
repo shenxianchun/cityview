@@ -1,10 +1,11 @@
 $(function(){
+	var cityname=$("#cityname").text();
 	$.ajax({
 		type:'post',
 		url:'/cityview/weather/queryCountWeather.action',
 		contentType:'application/json;charset=utf-8',
 		//数据格式是json串
-		data:'{"cityname":"北京"}',
+		data:'{"cityname":"'+cityname+'"}',
 		success:function(response){//返回json结果
 			console.log(response)
 			var weatherKey=[],weatherVal=[];
@@ -171,7 +172,7 @@ $(function(){
 			var mychart=echarts.init(document.getElementById("aqimonthcount"),"macarons");
 			mychart.setOption(optionpower);
 		}
-	});
+	})
 })
 
 

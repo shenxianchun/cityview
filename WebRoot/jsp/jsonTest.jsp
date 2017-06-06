@@ -75,6 +75,8 @@ function responseip(){
 		}
 	});
 }
+
+//AQI查询
 function responseday(){
 	$.ajax({
 		type:'post',
@@ -89,7 +91,24 @@ function responseday(){
 	});
 	
 }
+//插入AQI
+function aqi(){
+	$.ajax({
+		type:'post',
+		url:'${pageContext.request.contextPath }/aqimonth/insert.action',
+		//请求是key/value这里不需要指定contentType，因为默认就 是key/value类型
+		contentType:'application/json;charset=utf-8',
+		//数据格式是json串，商品信息
+		data:'{"cityname":"上海"}',
+		success:function(data){
+			alert(data);
+		}
+	});
+}
 
+
+
+//插入历史天气
 function weather(){
 	$.ajax({
 		type:'post',
@@ -112,7 +131,7 @@ function food(){
 		//请求是key/value这里不需要指定contentType，因为默认就 是key/value类型
 		contentType:'application/json;charset=utf-8',
 		//数据格式是json串，商品信息
-		data:'{"cityname":"上海"}',
+		data:'{"cityname":"大连"}',
 		success:function(data){
 			alert(data);
 		}
@@ -126,7 +145,7 @@ function view(){
 		//请求是key/value这里不需要指定contentType，因为默认就 是key/value类型
 		contentType:'application/json;charset=utf-8',
 		//数据格式是json串，商品信息
-		data:'{"cityname":"上海"}',
+		data:'{"cityname":"大连"}',
 		success:function(data){
 			alert(data);
 		}
@@ -140,7 +159,7 @@ function job(){
 		//请求是key/value这里不需要指定contentType，因为默认就 是key/value类型
 		contentType:'application/json;charset=utf-8',
 		//数据格式是json串，商品信息
-		data:'{"cityname":"北京","name":"java"}',
+		data:'{"cityname":"杭州","name":"java"}',
 		success:function(data){
 			alert(data);
 		}
@@ -154,12 +173,17 @@ function houses(){
 		//请求是key/value这里不需要指定contentType，因为默认就 是key/value类型
 		contentType:'application/json;charset=utf-8',
 		//数据格式是json串，商品信息
-		data:'{"cityname":"上海"}',
+		data:'{"cityname":"大连"}',
 		success:function(data){
 			alert(data);
 		}
 	});
 }
+
+
+
+
+
 
 </script>
 </head>
@@ -169,7 +193,10 @@ function houses(){
 <input type="button" onclick="responseip()" value="访问者ip测试"/>
 <input type="button" onclick="responseday()" value="每月统计天数测试"/>
 
+<input type="button" onclick="aqi()" value="插入AQI"/>
+
 <input type="button" onclick="weather()" value="插入历史天气"/>
+
 
 
 <input type="button" onclick="food()" value="插入美食"/>

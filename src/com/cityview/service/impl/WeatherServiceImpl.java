@@ -82,4 +82,10 @@ public class WeatherServiceImpl implements WeatherService {
 		return weatherMapper.findWeatherMonthAll(monthweather);
 	}
 
+	@Override
+	public List<String> querymonth(String cityname) throws Exception {
+		// TODO Auto-generated method stub
+		return weatherMapper.querymonth(cityname);
+	}
+
 }

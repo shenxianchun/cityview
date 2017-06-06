@@ -1,10 +1,11 @@
 $(function(){
+	var cityname=$("#cityname").text();
 	$.ajax({
 		type:'post',
 		url:'aqimonth/table.action',
 		contentType:'application/json;charset=utf-8',
 		//数据格式是json串
-		data:'{"cityname":"北京"}',
+		data:'{"cityname":"'+cityname+'"}',
 		success:function(response){//返回json结果
 			var month=[];
 			var datamin=[];
@@ -13,7 +14,7 @@ $(function(){
 			$(".cityname").append(response[0].cityname);
 			for(var i=0;i<response.length;i++){
 				$("#aqimonth-table").append("<tr>"+
-						"<td><a href=/cityview/aqi/dayaqi.jsp?cityname="+response[i].cityname+"&month="+response[i].month+">"+response[i].month+"</a></td>"+
+						"<td><a href=/cityview/aqi/dayaqi.jsp?cityname="+response[i].cityname+"&month="+response[i].month+" target='_blank'>"+response[i].month+"</a></td>"+
 						"<td>"+response[i].aqi+"</td>"+
 						"<td>"+response[i].minaqi+"~"+response[i].maxaqi+"</td>" +
 						"<td><div style='width:65px;height:20px;color:black;'>"+response[i].grade+"</div></td>" +
@@ -123,7 +124,7 @@ $(function(){
 		url:'aqimonth/queryAqiMonthCountGrade.action',
 		contentType:'application/json;charset=utf-8',
 		//数据格式是json串
-		data:'{"cityname":"深圳"}',
+		data:'{"cityname":"'+cityname+'"}',
 		success:function(response){//返回json结果
 			var month=[];//月份
 			var seriousdata=[];//严重污染
@@ -261,7 +262,7 @@ $(function(){
 		url:'aqimonth/queryCountGradeMonth.action',
 		contentType:'application/json;charset=utf-8',
 		//数据格式是json串
-		data:'{"cityname":"北京"}',
+		data:'{"cityname":"'+cityname+'"}',
 		success:function(response){//返回json结果
 			var numGrade=[],grade=[];
 			var datanum=[];
@@ -330,7 +331,7 @@ $(function(){
 		url:'aqimonth/queryCountGradeDay.action',
 		contentType:'application/json;charset=utf-8',
 		//数据格式是json串
-		data:'{"cityname":"深圳"}',
+		data:'{"cityname":"'+cityname+'"}',
 		success:function(response){//返回json结果
 			var numGrade=[],grade=[];
 			var datanum=[];

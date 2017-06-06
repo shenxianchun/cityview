@@ -39,31 +39,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 统计工作经验与工资的关系 -->
-	<select id="findpriceExp" parameterType="java.lang.String" resultType="com.cityview.po.Job">
-		SELECT AVG(minprice)AS minprice,AVG(maxprice)AS maxprice,exp 
-		FROM job 
-		WHERE cityname='${value}' AND exp!='' AND minprice!='' GROUP BY exp ORDER BY exp
+	<select id="findpriceExp" parameterType="com.cityview.po.Job" resultType="com.cityview.po.Job">
+		SELECT floor(AVG(minprice))AS minprice,floor(AVG(maxprice))AS maxprice,exp 
+		FROM job
+		<where>
+			cityname=#{cityname} AND exp!='' AND minprice!=''
+			<if test="name!=null">
+				AND name LIKE '%${name}%'
+			</if>
+			GROUP BY exp ORDER BY exp
+		</where>
+		
 	</select>
 	
+	
+	
 	<!-- 统计学历与工资的关系 -->
-	<select id="findpriceEducation" parameterType="java.lang.String" resultType="com.cityview.po.Job">
-		SELECT AVG(minprice)AS minprice,AVG(maxprice)AS maxprice,education 
+	<select id="findpriceEducation" parameterType="com.cityview.po.Job" resultType="com.cityview.po.Job">
+		SELECT floor(AVG(minprice))AS minprice,floor(AVG(maxprice))AS maxprice,education 
 		FROM job 
-		WHERE cityname='${value}' AND education!='' AND minprice!=''  GROUP BY education ORDER BY education
+		<where>
+			cityname=#{cityname} AND education!='' AND minprice!=''
+			<if test="name!=null">
+				AND name LIKE '%${name}%'
+			</if>
+			GROUP BY education ORDER BY education
+		</where>
 	</select>
 	
 	<!-- 统计工作经验和用人需求的关系 -->
-	<select id="finddemandExp" parameterType="java.lang.String" resultType="com.cityview.po.Job">
+	<select id="finddemandExp" parameterType="com.cityview.po.Job" resultType="com.cityview.po.Job">
 		SELECT SUM(substring_index(`demand`,'人',1))AS total,exp 
 		FROM job 
-		WHERE cityname='${value}' AND exp!='' GROUP BY exp ORDER BY exp
+		<where>
+			cityname=#{cityname} AND exp!=''
+			<if test="name!=null">
+				AND name LIKE '%${name}%'
+			</if>
+			GROUP BY exp ORDER BY exp
+		</where>
 	</select>
 	
 	<!-- 学历与用人需求的关系 -->
-	<select id="finddemandEducation" parameterType="java.lang.String" resultType="com.cityview.po.Job">
+	<select id="finddemandEducation" parameterType="com.cityview.po.Job" resultType="com.cityview.po.Job">
 		SELECT SUM(substring_index(`demand`,'人',1))AS total,education 
 		FROM job 
-		WHERE cityname='${value}' AND education!='' GROUP BY education ORDER BY education
+		<where>
+			cityname=#{cityname} AND education!=''
+			<if test="name!=null">
+				AND name LIKE '%${name}%'
+			</if>
+			GROUP BY education ORDER BY education
+		</where>
+		 
 	</select>
 	
 	

@@ -34,6 +34,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<!-- 插入月份链接end -->
 	
+	<!-- 查找月份 -->
+	<select id="querymonth" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT substring(date,1,7) AS num FROM monthweather WHERE cityname='${value}' GROUP BY num ORDER BY num DESC
+	</select>
+	
 	<!-- 天气状况统计start -->
 	<select id="findCountweather" parameterType="java.lang.String" resultType="com.cityview.po.Monthweather">
 		SELECT count(weather)AS count,weather 

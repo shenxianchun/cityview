@@ -50,7 +50,7 @@ public interface JobMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Job> findpriceExp(String cityname)throws Exception;
+	public List<Job> findpriceExp(Job job)throws Exception;
 	
 	/**
 	 * 统计学历与工资的关系
@@ -58,7 +58,7 @@ public interface JobMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Job> findpriceEducation(String cityname)throws Exception;
+	public List<Job> findpriceEducation(Job job)throws Exception;
 	
 	/**
 	 * 统计工作经验和用人需求的关系
@@ -66,7 +66,7 @@ public interface JobMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Job> finddemandExp(String cityname)throws Exception;
+	public List<Job> finddemandExp(Job job)throws Exception;
 	
 	/**
 	 * 学历与用人需求的关系
@@ -74,6 +74,6 @@ public interface JobMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Job> finddemandEducation(String cityname)throws Exception;
+	public List<Job> finddemandEducation(Job job)throws Exception;
 	
 }

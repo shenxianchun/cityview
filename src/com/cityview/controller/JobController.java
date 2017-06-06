@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -45,7 +46,7 @@ public class JobController {
 	 * @return
 	 */
 	@RequestMapping("/IpgetCityname")
-	public @ResponseBody String IpgetCityname(HttpServletRequest request){
+	public @ResponseBody String IpgetCityname(HttpServletRequest request,HttpSession session){
 		String ip=new GetIp().getIpAddr(request);
 		System.out.println("访问者的ip地址为"+ip);
 		
@@ -55,6 +56,7 @@ public class JobController {
 		
 		cityname="北京";
 		
+		session.setAttribute("cityname", cityname);
 		return cityname;
 	}
 	
@@ -146,7 +148,7 @@ public class JobController {
 	 */
 	@RequestMapping("/findpriceExp")
 	public @ResponseBody List<Job> findpriceExp(@RequestBody Job job)throws Exception{
-		List<Job> priceExplist=jobService.findpriceExp(job.getCityname());
+		List<Job> priceExplist=jobService.findpriceExp(job);
 		return priceExplist;
 	}
 	/**
@@ -157,7 +159,7 @@ public class JobController {
 	 */
 	@RequestMapping("/findpriceEducation")
 	public @ResponseBody List<Job> findpriceEducation(@RequestBody Job job)throws Exception{
-		List<Job> priceEducationlist=jobService.findpriceEducation(job.getCityname());
+		List<Job> priceEducationlist=jobService.findpriceEducation(job);
 		return priceEducationlist;
 	}
 	
@@ -169,7 +171,7 @@ public class JobController {
 	 */
 	@RequestMapping("/finddemandExp")
 	public @ResponseBody List<Job> finddemandExp(@RequestBody Job job)throws Exception{
-		List<Job> demandExplist=jobService.finddemandExp(job.getCityname());
+		List<Job> demandExplist=jobService.finddemandExp(job);
 		return demandExplist;
 	}
 	
@@ -181,7 +183,7 @@ public class JobController {
 	 */
 	@RequestMapping("/finddemandEducation")
 	public @ResponseBody List<Job> finddemandEducation(@RequestBody Job job)throws Exception{
-		List<Job> demandEducationlist=jobService.finddemandEducation(job.getCityname());
+		List<Job> demandEducationlist=jobService.finddemandEducation(job);
 		return demandEducationlist;
 	}
 	

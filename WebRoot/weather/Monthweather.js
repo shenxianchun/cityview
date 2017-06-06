@@ -4,11 +4,28 @@ $(function(){
 //	alert("值为"+day+cityname);
 	$.ajax({
 		type:'post',
+		url:'/cityview/weather/querymonth.action',
+		contentType:'application/json;charset=utf-8',
+		//数据格式是json串
+		data:'{"cityname":"'+cityname+'"}',
+		success:function(response){//返回json结果
+			for(var i=0;i<response.length;i++){
+				$("#month").append("<div class='item'><a href='weatherday.jsp?cityname="+cityname+"&date="+response[i]+"'>"+response[i]+"</a></div>");
+			}
+		}
+	})
+
+	$.ajax({
+		type:'post',
 		url:'/cityview/weather/queryWeatherMonthAll.action',
 		contentType:'application/json;charset=utf-8',
 		//数据格式是json串
 		data:'{"cityname":"'+cityname+'","date":"'+date+'"}',
 		success:function(response){//返回json结果
+			if(response==""){
+				alert("无数据，请更新");
+				return;
+			}
 			var max=[],min=[],date=[];
 			for(var i=0;i<response.length;i++){
 				$("#weachermonth-table").append("<tr>" +

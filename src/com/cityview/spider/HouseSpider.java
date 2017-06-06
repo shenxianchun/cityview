@@ -49,11 +49,12 @@ public class HouseSpider {
 				System.out.println("本出租房链接是："+afwurl.attr("abs:href"));
 				String fwurl=afwurl.attr("abs:href");
 				housesbean.setHouseurl(fwurl);
-				BloomFilter filter = BloomFilter.getIstance();//网页去重工具类（单例模式）
-				if(filter.contains(fwurl)){
-					System.out.println("已存在，跳出");
-					continue;
-				}else{
+//				BloomFilter filter = BloomFilter.getIstance();//网页去重工具类（单例模式）
+//				if(filter.contains(fwurl)){
+//					System.out.println("已存在，跳出");
+//					continue;
+//				}else{
+//					filter.add(fwurl);
 					System.out.println("房屋标题："+title.text());
 					housesbean.setTitle(title.text());
 					Elements sizes=list_items.select("dd[class='dd-item size']>span");
@@ -198,10 +199,10 @@ public class HouseSpider {
 					
 					houses.add(housesbean);
 					
-					filter.add(fwurl);
+					
 				}
 				
-			}
+//			}
 		}
 		catch (IOException e) {
 

@@ -49,30 +49,30 @@ public class JobServiceImpl implements JobService{
 	}
 
 	@Override
-	public List<Job> findpriceExp(String cityname) throws Exception {
+	public List<Job> findpriceExp(Job job) throws Exception {
 		// TODO Auto-generated method stub
-		return jobMapper.findpriceExp(cityname);
+		return jobMapper.findpriceExp(job);
 	}
 
 
 	@Override
-	public List<Job> findpriceEducation(String cityname) throws Exception {
+	public List<Job> findpriceEducation(Job job) throws Exception {
 		// TODO Auto-generated method stub
-		return jobMapper.findpriceEducation(cityname);
+		return jobMapper.findpriceEducation(job);
 	}
 
 
 	@Override
-	public List<Job> finddemandExp(String cityname) throws Exception {
+	public List<Job> finddemandExp(Job job) throws Exception {
 		// TODO Auto-generated method stub
-		return jobMapper.finddemandExp(cityname);
+		return jobMapper.finddemandExp(job);
 	}
 
 
 	@Override
-	public List<Job> finddemandEducation(String cityname) throws Exception {
+	public List<Job> finddemandEducation(Job job) throws Exception {
 		// TODO Auto-generated method stub
-		return jobMapper.finddemandEducation(cityname);
+		return jobMapper.finddemandEducation(job);
 	}
 
 
