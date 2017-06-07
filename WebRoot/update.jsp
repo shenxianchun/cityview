@@ -1,31 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>美食统计</title>
+	<title>数据更新</title>
 	<link rel="stylesheet" href="css/semantic.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<style type="text/css">
-	/*美食css start*/
-	.food_li{ overflow:hidden; padding-right:0;}
-	.food_li .a{ margin-left:22px;}
-	.food_li .a a{ float:left; width:210px; height:270px; margin:20px 0 0 46px; -webkit-transition: all .3s linear; transition: all .3s linear;}
-	.food_li .a img{ width:210px; display:block; height:140px;}
-	.food_li .a span{ font-size:16px; line-height:41px; display:inline-block; max-width:105px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; vertical-align:top;}
-	.food_li .a font{ float:right; font-size:12px; color:#999; line-height:41px;}
-	.food_li .a p{ border-top:#ddd dotted 1px; padding-top:6px; color:#666; height:84px; overflow:hidden;}
-	.food_li .a div{ border:#ddd solid 1px; border-top:0; padding:5px; padding-top:0; height:124px;}
-	.food_li .a i{ margin:11px 5px 0 0;}
-	.food_li .a a:hover{ box-shadow:0px 0 6px rgba(0, 0, 0, 0.2); -webkit-transform: translate3d(0, -3px, 0); transform: translate3d(0, -3px, 0);text-decoration: none;}
-
-	.food_li .t{ margin-bottom:20px; background:#f4f4f4; line-height:40px; height:40px; border-bottom:#ddd solid 1px; font-size:16px; color:#666; padding-left:20px;margin-right:0; margin-bottom:0;text-align: center;}
-
-	/*美食css end*/
-
-	#bottommenu{background-color: #6d6363;}
-	</style>
 </head>
 <body>
 <div id="main">
@@ -45,14 +26,16 @@
 		</div>
 	</div>
 	<!--导航栏end-->
-
-	<!-- 搜索start -->
-	<div class="search">
+	
+	<!-- 更新start -->
+	<div class="search" style="width:80%;height:500px;margin:0 auto;">
 		<table class="ui table" style="background:rgba(228, 241, 221, 0.26);">
+			<tr>
+				<td colspan="5" style="text-align:center;font-size:24px;width:300px;">选择要更新的数据</td>
+			</tr>
 			<tr align="center">
-				<td width="250px" style="color:red;text-align:left;">美食城</td>
-				<td width="90px">选择城市:</td>
-				<td width="100px">
+				<td width="200px">选择城市:</td>
+				<td width="210px">
 					  <div class="ui dropdown">
 						<input type="hidden" id="city" value=""/>
 						<div class="default text">选择城市</div>
@@ -62,7 +45,7 @@
 						</div>
 					</div>
 				</td>
-				<td width="80px">选择市区:</td>
+				<td width="200px">选择市区:</td>
 				<td width="120px">
 					<div class="ui dropdown">
 						<input type="hidden" id="province" value=""/>
@@ -73,28 +56,61 @@
 						</div>
 					</div>
 				</td>
-				<td align="right">
-					<button class="ui primary button" id="search">搜索</button>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align:right;">招聘信息更新</td>
+				<td colspan="2">
+					<div class="ui input">
+						  <input type="text" placeholder="请输入职位" id="position">
+					</div>
+				</td>
+				<td>
+					<button class="ui primary button" id="jobupdate">更新</button>
+					<span class="jobupdate">更新中,请稍后...</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="text-align:center;">房租信息</td>
+				<td>
+					<button class="ui primary button" id="houseupdate">更新</button>
+					<span class="houseupdate">更新中,请稍后...</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="text-align:center;">城市气候信息</td>
+				<td>
+					<button class="ui primary button" id="weatherupdate">更新</button>
+					<span class="weatherupdate">更新中,请稍后...</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="text-align:center;">空气质量指数</td>
+				<td>
+					<button class="ui primary button" id="aqiupdate">更新</button>
+					<span class="aqiupdate">更新中,请稍后...</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="text-align:center;">城市旅游景点</td>
+				<td>
+					<button class="ui primary button" id="viewupdate">更新</button>
+					<span class="viewupdate">更新中,请稍后...</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="text-align:center;">城市美食</td>
+				<td>
+					<button class="ui primary button" id="foodupdate">更新</button>
+					<span class="foodupdate">更新中,请稍后...</span>
 				</td>
 			</tr>
 		</table>
 	</div>
-	<!-- 搜索end -->
+	<!-- 更新end -->
 
-<!--内容栏start-->
-	<div class="content">
-		<div class="online">
-			<div class="food_li">
-				<div class="t"><span class="cityname"><%=session.getAttribute("cityname") %></span>美食</div>
-				<div class="a" id="foodlist">
-					<!-- 美食列表 -->
-				</div>
-			</div>
-		</div>
-	</div>
-<!--内容栏end-->
-
-<!-- 底部开始 -->
+	
+	<!-- 底部开始 -->
 	<div class="bottom">
       <ul class="bottom-left">
         <li>
@@ -132,21 +148,21 @@
       </ul>
       <p>Copyright ©2017-2018 宜居城市可视化平台网版权所有 - <a href="http://www.miitbeian.gov.cn/" target="blank_">辽ICP备16019394号</a></p>
     </div><!-- 底部结束 -->
-
-
+	
+	
 </div>
 <script type="text/javascript" src="js/echarts-all.js"></script>
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/semantic.min.js"></script>
+
 <!-- 查询省对应的市区 -->
 <script type="text/javascript" src="js/city.js"></script>
-<script type="text/javascript" src="js/food.js"></script>
-
-<script type="text/javascript" src="js/SearchFood.js"></script>
+<script type="text/javascript" src="js/update.js"></script>
 
 
 <script type="text/javascript">
 $(function(){
+	$(".ui.dropdown").dropdown();//下拉框生效
 	$(".treebox .level1>a").click(function(){
 		$(this).addClass('current')   //给当前元素添加"current"样式
 		.find('i').addClass('down')   //小箭头向下样式
@@ -156,9 +172,6 @@ $(function(){
 		 return false; //阻止默认时间
 	});
 })
-$(document).ready(function(){
-	$(".ui.dropdown").dropdown();
-});
 </script>
 </body>
 </html>

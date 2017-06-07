@@ -6,6 +6,7 @@ $(function(){
 		//数据格式是json串
 		success:function(cityname){//返回json结果
 //			alert(cityname);
+			/*location.reload();*/
 		}
 	})
 })

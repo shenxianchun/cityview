@@ -5,6 +5,8 @@ $(function(){
 			 alert("请选择市区");
 			 return ;
 		 }
+		 $(".cityname").empty();
+		 $(".cityname").append(cityname);
 		 $("#weathercount").empty();
 		 $("#container").empty();
 		 $("#aqimonthcount").empty();
@@ -17,6 +19,11 @@ $(function(){
 				//数据格式是json串
 				data:'{"cityname":"'+cityname+'"}',
 				success:function(response){//返回json结果
+					
+					if(response==",,"){
+						alert("请前往数据更新更新该城市的数据");
+						return ;
+					}
 					console.log(response)
 					var weatherKey=[],weatherVal=[];
 					var directionKey=[],directionVal=[];

@@ -6,7 +6,8 @@ $(function(){
 			 return ;
 		 }
 		 $("#viewlist").empty();
-		 
+		 $(".cityname").empty();
+		 $(".cityname").append(cityname);
 		 
 		 $.ajax({
 				type:'post',

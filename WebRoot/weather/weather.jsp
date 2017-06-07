@@ -20,8 +20,7 @@
 		/*background:#00b5ad;*/
 		margin:20px 0px 90px 80px;
 	}
-	.bottom{margin-top:335px;}
-	#bottommenu{background-color: #6d6363;}
+	
 	</style>
 </head>
 <body>
@@ -38,7 +37,7 @@
 			<a href="../monthaqi.jsp" class="item">空气质量指数</a>
 			<a href="../view.jsp" class="item">城市旅游景点</a>
 			<a href="../food.jsp" class="item">城市美食</a>
-			<a href="" class="item right">数据更新</a>
+			<a href="../update.jsp" class="item right">数据更新</a>
 		</div>
 	</div>
 	<!--导航栏end-->
@@ -94,23 +93,23 @@
 		<div class="online">
 			<!--历史天气统计start-->
 			<div>
-				<div class="title"><span class="cityname">北京</span>历史天气统计</div>
-				<div id="weathercount" class="chr" style="background:#333;width:800px;height:300px;margin:0 auto;">
-					
+				<div class="title"><span class="cityname"><%=session.getAttribute("cityname") %></span>历史天气统计</div>
+				<div id="weathercount" class="chr" style="width:800px;height:300px;margin:0 auto;">
+					<!-- 历史天气统计 -->
 				</div>
 			</div>
 			<!--历史天气统计end-->
 			
 			<!--历史风向统计start-->
 			 <div id="monthchart">
-			 	<div class="title2" style="margin-left:470px;"><span class="cityname"></span>历史风向统计</div>
+			 	<div class="title2" style="margin-left:470px;"><span class="cityname"><%=session.getAttribute("cityname") %></span>历史风向统计</div>
 			 	<div id="container" class="chr"></div>
 			 </div>
 			<!--历史风向统计end-->
 			
 			<!--历史风力统计start-->
 			<div class="count">
-				<div class="title3" style="margin-left:470px;"><span class="cityname"></span>历史风力统计</div>
+				<div class="title3" style="margin-left:470px;"><span class="cityname"><%=session.getAttribute("cityname") %></span>历史风力统计</div>
 				<div id="aqimonthcount" class="chr"></div>
 			</div>
 			<!--历史风力统计start-->

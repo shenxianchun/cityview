@@ -6,7 +6,8 @@ $(function(){
 			 return ;
 		 }
 		 $("#foodlist").empty();
-		 
+		 $(".cityname").empty();
+		 $(".cityname").append(cityname);
 		 
 		 $.ajax({
 				type:'post',

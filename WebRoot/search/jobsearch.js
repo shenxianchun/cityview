@@ -20,9 +20,6 @@ $(function(){
 				success:function(data){//返回json结果
 					if(data==""){
 						alert("数据为空，请更新");
-						$("#companynature").append("数据为空，请更新");
-						$("#scale").append("数据为空，请更新");
-						$("#industry").append("数据为空，请更新");
 						return;
 					}
 					//统计不同公司类型的总数
@@ -90,6 +87,9 @@ $(function(){
 				//数据格式是json串
 				data:'{"cityname":"'+cityname+'"}',
 				success:function(data){//返回json结果
+					if(data==""){
+						return;
+					}
 					//统计不同公司类型的总数
 //					alert(data[0].scale+":"+data[0].total);
 					var scale=[],total=[];
@@ -155,6 +155,9 @@ $(function(){
 				//数据格式是json串
 				data:'{"cityname":"'+cityname+'"}',
 				success:function(data){//返回json结果
+					if(data==""){
+						return;
+					}
 					//统计不同公司类型的总数
 					var industry=[],total=[];
 					for(var i=0;i<data.length;i++){
@@ -211,13 +214,6 @@ $(function(){
 					mychart.setOption(option);
 				}
 			})
-		 
-		 
-		 
-		 
-		 
-		 
-		 
 		 
 		 
 		 

@@ -23,7 +23,7 @@
 			<a href="../monthaqi.jsp" class="item">空气质量指数</a>
 			<a href="../view.jsp" class="item">城市旅游景点</a>
 			<a href="../food.jsp" class="item">城市美食</a>
-			<a href="" class="item right">数据更新</a>
+			<a href="../update.jsp" class="item right">数据更新</a>
 		</div>
 	</div>
 	<!--导航栏end-->

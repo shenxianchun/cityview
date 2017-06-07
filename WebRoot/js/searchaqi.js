@@ -22,6 +22,10 @@ $(function(){
 				//数据格式是json串
 				data:'{"cityname":"'+cityname+'"}',
 				success:function(response){//返回json结果
+					if(response==""){
+						alert("数据为空，请前往数据更新");
+						return ;
+					}
 					var month=[];
 					var datamin=[];
 					var datamax=[];
@@ -141,6 +145,9 @@ $(function(){
 				//数据格式是json串
 				data:'{"cityname":"'+cityname+'"}',
 				success:function(response){//返回json结果
+					if(response==""){
+						return ;
+					}
 					var month=[];//月份
 					var seriousdata=[];//严重污染
 					var severedata=[];//重度污染
@@ -279,6 +286,10 @@ $(function(){
 				//数据格式是json串
 				data:'{"cityname":"'+cityname+'"}',
 				success:function(response){//返回json结果
+					if(response==""){
+						
+						return ;
+					}
 					var numGrade=[],grade=[];
 					var datanum=[];
 					for(var i=0;i<response.length;i++){
@@ -348,6 +359,9 @@ $(function(){
 				//数据格式是json串
 				data:'{"cityname":"'+cityname+'"}',
 				success:function(response){//返回json结果
+					if(response==""){
+						return ;
+					}
 					var numGrade=[],grade=[];
 					var datanum=[];
 					for(var i=0;i<response.length;i++){

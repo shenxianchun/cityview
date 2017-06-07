@@ -23,6 +23,7 @@ $(function(){
 				success:function(data){//返回json结果
 					//统计城市中的房屋中介公司
 					if(data==""){
+						alert("该城市数据为空，请前往数据更新");
 						return ;
 					}
 					var total=[];
