@@ -83,6 +83,21 @@ background-repeat: no-repeat; font-family: "微软雅黑";background-size:cover;
 /* 图表end */ 
 
 
+
+/* 对比start */
+#compare{
+	background:rgb(99, 175, 29);
+}
+#compare:hover{
+	background:rgb(127, 236, 26);
+}
+/* 对比end */
+
+
+
+
+
+
 /*底部*/
 div.bottom{
 	background-color:#2D363B;
